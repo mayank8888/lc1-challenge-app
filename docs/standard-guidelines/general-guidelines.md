@@ -24,6 +24,7 @@
 - `Procfile` //if on Heroku
 - `web.js` //if on Heroku
 - `package.json` //if using Node
+- `/.gitignore`
 - `/docs`
 	- `/standard-guidelines` //our standard guidelines (coding, style) across all repos
 	- `/custom-guidelines` //guidelines for a specific repo
