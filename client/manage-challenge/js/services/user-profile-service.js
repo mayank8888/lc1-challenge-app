@@ -23,7 +23,7 @@
 		var deferred = $q.defer();
 
 		//TODO: replace w/ real ajax call
-		$http({method: 'GET', url: 'data/userProfile.json'})
+		$http({method: 'GET', url: 'data/user-profile.json'})
 		.success(function(data, status, headers, config){
 			deferred.resolve(data);
 		})
