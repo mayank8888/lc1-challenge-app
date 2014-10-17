@@ -23,7 +23,7 @@
         <h3>
           <i></i>Scorecard
         </h3>
-        <a href="http://www.topcoder.com/challenge-details/{{challenge.id}}" target="_blank">{{challenge.name}}</a> / <a href="#/challenges/{{challenge.id}}/submissions">Submissions</a> / {{submission.id}} / Scorecard
+        <a href="http://www.topcoder.com/challenge-details/{{challenge.id}}" target="_blank">{{challenge.name}}</a> / <a href="#/challenges/{{challenge.id}}/submissions">Submissions</a> / {{scorecard.sequence}} / Scorecard
       </div>
     </div>
   </header>
@@ -48,7 +48,7 @@
             {{scoreItem.id}}
           </td>
           <td class="text-left">
-            {{scoreItem.requirement.text}} - {{scoreItem.score}} - {{(scoreItem.score == 5)}}
+            {{scoreItem.requirement.text}}
           </td>
 
           <td>

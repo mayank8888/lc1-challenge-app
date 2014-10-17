@@ -13,11 +13,13 @@
 			$timeout = _$timeout;
 
 			//TODO: look at john papa for alternative
+
 			//exposed Challenge Service methods
 			return {
 				"getChallenge": getChallenge,
 				"getChallenges": getChallenges,
-				"getScorecards": getScorecards
+				"getScorecards": getScorecards,
+				"getScorecard": getScorecard
 			};
 		}
 	]);
@@ -69,11 +71,23 @@
 		return deferred.promise;
 	} 
 
-	function getResults(challengeId) {
-		//TODO: Implement
+	function getScorecard(challengeId, sequence) {
+		var deferred = $q.defer();
+
+		getScorecards(challengeId).then(function(scorecards) {
+			deferred.resolve(_.first(_.where(scorecards, { 
+				'challengeId': parseInt(challengeId),
+				'sequence': sequence
+			})));
+		});
+		return deferred.promise;
 	}
 
-	function getScorecard(challengeId) {
+	function getSubmissions() {
+		
+	}
+
+	function getResults(challengeId) {
 		//TODO: Implement
 	}
 

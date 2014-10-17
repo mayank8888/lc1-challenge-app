@@ -2,8 +2,8 @@
   'use strict';
 
 	angular.module('manageChallenge')
-  .controller("ScorecardController", [ '$scope', '$filter', 'browser', 'matchmedia', 'ngTableParams', 'ChallengeService', 'ManageChallengeUtils',
-    function returnScorecardController($scope, $filter, browser, matchmedia, ngTableParams, ChallengeService, Utils) {
+  .controller("ScorecardController", [ '$scope', '$filter', '$routeParams', 'browser', 'matchmedia', 'ngTableParams', 'ChallengeService', 'ManageChallengeUtils',
+    function returnScorecardController($scope, $filter, $routeParams, browser, matchmedia, ngTableParams, ChallengeService, Utils) {
 
       var scoreItems = [
         {
@@ -25,13 +25,13 @@
       ];
 
       $scope.scoreItems = scoreItems;
-      $scope.challenge = {
-          id: "123",
-          name: "fjdksal"
-      };
-      $scope.submission = {
-        id: "1"
-      };
+
+      ChallengeService.getChallenge($routeParams.challengeId).then(function(challenge) {
+        $scope.challenge = challenge;
+        ChallengeService.getScorecard(challenge.id, $routeParams.submissionId).then(function(scorecard) {
+          $scope.scorecard = scorecard;
+        });
+      });
 
       $scope.saveScorecard = function() {
         //TODO: Implement

@@ -22,7 +22,6 @@
         templateUrl: "templates/challenge-list.html",
         resolve: {
           challenges: function getChallenges(ChallengeService) {
-            //console.log('getchallegnes');
             return ChallengeService.getChallenges();
           }
         }
