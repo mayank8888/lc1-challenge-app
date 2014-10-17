@@ -199,7 +199,7 @@ header.header {
         height: 77px;
         margin: 0 0 0 30px;
         width: 341px;
-        background: url("../i/logo.png") no-repeat 0 6px;
+        background: url("../img/logo.png") no-repeat 0 6px;
         float: left;
     }
     header nav {
@@ -220,7 +220,7 @@ header.header {
                 margin: 0 -1px;
                 outline: medium none;
                 position: relative;
-                background-image: url("../i/icons.png");
+                background-image: url("../img/icons.png");
             }
             header nav .icon:hover {
                 opacity: 0.7;
@@ -320,12 +320,12 @@ footer {
                     height: 100%;
                     top: 0;
                     right: 0;
-                    background: #e8e8e9 url("../i/challenge-map-incomplete.png") no-repeat;
+                    background: #e8e8e9 url("../img/challenge-map-incomplete.png") no-repeat;
                     border-bottom: 9px solid #e8e8e8;
                     cursor: pointer;
                 }
                 .challenge-map .challenge-cnt .map.complete .bg{
-                    background: #d6e9d3 url("../i/challenge-map-complete.png") no-repeat;
+                    background: #d6e9d3 url("../img/challenge-map-complete.png") no-repeat;
                     border-bottom: 9px solid #d6e9d2;
                     cursor: pointer;
                 }
@@ -369,7 +369,7 @@ footer {
                     top: 50%;
                     margin-top: -24px;
                     cursor: pointer;
-                    background: url("../i/icon-connector.png") no-repeat 100% 0;
+                    background: url("../img/icon-connector.png") no-repeat 100% 0;
                 }
                 .challenge-map .challenge-cnt .map.complete .icon{
                     background-position: 100% -48px;
@@ -391,7 +391,7 @@ footer {
                             width: 34px;
                             height: 34px;
                             border-radius: 19px;
-                            background-image: url("../i/challenge-icons.png");
+                            background-image: url("../img/challenge-icons.png");
                             background-repeat: no-repeat;
                             background-color: #455560;
                         }
@@ -446,7 +446,7 @@ footer {
     .main section{
         display: block;
         padding: 4px 30px 60px 30px;
-        background: url("../i/section-border.png") 0 100% repeat-x;
+        background: url("../img/section-border.png") 0 100% repeat-x;
     }
     .main.has-challenge-map section{
         padding: 4px 48px 60px 30px;
@@ -478,7 +478,7 @@ footer {
                 width: 40px;
                 height: 40px;
                 border-radius: 20px;
-                background-image: url("../i/section-header-icons.png");
+                background-image: url("../img/section-header-icons.png");
                 background-color: #455560;
                 left: 0;
                 top: 50%;
@@ -612,7 +612,7 @@ footer {
                 height: 34px;
                 width: 34px;
                 display: block;
-                background: url("../i/button-icons.png") no-repeat 0 0;
+                background: url("../img/button-icons.png") no-repeat 0 0;
                 margin-left: 5px;
             }
             .main section .content .uploadBar .upload-btn:hover {
@@ -688,7 +688,7 @@ footer {
                     position: absolute;
                     width: 24px;
                     height: 24px;
-                    background: url("../i/button-icons.png") no-repeat -5px -39px;
+                    background: url("../img/button-icons.png") no-repeat -5px -39px;
                     right: 3px;
                     top: 0;
                     opacity: 1;
@@ -712,7 +712,7 @@ footer {
                 }
                 .main section .content .file-holder .file i{
                     position: absolute;
-                    background: url("../i/file-icon.png") no-repeat;
+                    background: url("../img/file-icon.png") no-repeat;
                     width: 47px;
                     height: 58px;
                     font-size: 14px;
@@ -800,7 +800,7 @@ footer {
                 top: 0;
                 width: 34px;
                 height: 34px;
-                background: url("../i/button-icons.png") no-repeat 0 -68px;
+                background: url("../img/button-icons.png") no-repeat 0 -68px;
             }
 
         .main section .content .requirement-list{
@@ -842,7 +842,7 @@ footer {
                         display: block;
                         width: 34px;
                         height: 34px;
-                        background: url("../i/button-icons.png") no-repeat;
+                        background: url("../img/button-icons.png") no-repeat;
                         float: left;
                         margin-right: 10px;
                     }
@@ -884,7 +884,7 @@ footer {
                     height: 16px;
                     position: absolute;
                     bottom: -16px;
-                    background: url("../i/date-box-arrow.png") no-repeat;
+                    background: url("../img/date-box-arrow.png") no-repeat;
                 }
             .main section .content .date-select .start-date{
                 float: left;
@@ -920,7 +920,7 @@ footer {
                     width: 34px;
                     height: 34px;
                     float: right;
-                    background: url("../i/button-icons.png") no-repeat 0 -204px;
+                    background: url("../img/button-icons.png") no-repeat 0 -204px;
                 }
                 .main section .content .date-select .date-box .calendar-btn:hover{
                     opacity: .8;
@@ -1044,7 +1044,7 @@ footer {
                     display: block;
                     width: 100%;
                     height: 100%;
-                    background: url("../i/add-price-icon.png") no-repeat 50% 50%;
+                    background: url("../img/add-price-icon.png") no-repeat 50% 50%;
                 }
                 .main section .content .price-area .box .set-prize{
                     position: relative;
@@ -1053,7 +1053,7 @@ footer {
                     padding: 82px 26px 0 27px;
                 }
                     .main section .content .price-area .box .set-prize i{
-                        background: url("../i/prize-icon.png") no-repeat;
+                        background: url("../img/prize-icon.png") no-repeat;
                         width: 57px;
                         height: 68px;
                         position: absolute;
@@ -1071,7 +1071,7 @@ footer {
                         position: absolute;
                         width: 24px;
                         height: 24px;
-                        background: url("../i/button-icons.png") no-repeat -5px -39px;
+                        background: url("../img/button-icons.png") no-repeat -5px -39px;
                         right: 3px;
                         top: 4px;
                         opacity: 1;
