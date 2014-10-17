@@ -2,7 +2,7 @@
   "name": "create-challenge",
   "description": "Create Challenge page for the Create Challenge App",
   "version": "0.0.1",
-  "homepage": "https://github.com/appirio-tech/lc1-create-challenge",
+  "homepage": "https://github.com/appirio-tech/lc1-challenge-app",
   "license": "MIT",
   "private": true,
   "dependencies": {
