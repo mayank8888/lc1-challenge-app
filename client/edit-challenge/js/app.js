@@ -48,7 +48,7 @@ console.log('in this one2');
     var newChallengeId = Date.now();
 
     //after challenge has been created redirect user to edit page for that challenge
-    $location.path('/challenges/' + newChallengeId + '/edit');
+    $location.path('/challenges/' + newChallengeId + '/edit').replace();
   }
 
   function EditChallengeController($log, $routeParams, $scope) {
