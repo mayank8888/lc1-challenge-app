@@ -1,6 +1,6 @@
 # AngularJS Style Guide
 
-*** schameless coppied from [John Papa's angualrjs-styleguide](https://github.com/johnpapa/angularjs-styleguide/blob/master/README.md)
+***coppied from [John Papa's angualrjs-styleguide](https://github.com/johnpapa/angularjs-styleguide/blob/master/README.md)***
 
 *Opinionated AngularJS style guide for teams by [@john_papa](//twitter.com/john_papa)*
 
