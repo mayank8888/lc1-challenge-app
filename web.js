@@ -12,20 +12,27 @@
 
   //middleware
   app.use(logfmt.requestLogger());
+
   app.use('/edit', express.static(__dirname + '/client/edit-challenge'));
   app.use('/manage', express.static(__dirname + '/client/manage-challenge'));
+  app.use('/*/bower_components', express.static(__dirname + '/client/bower_components'));
+  app.use('/*/aaf', express.static(__dirname + '/client/aaf'));
+  app.use('/*/challenge', express.static(__dirname + '/client/challenge'));
 
   //server side routes
-  app.get('/', function (req, res) {
-    res.redirect('/manage/');
-  });
-
+  //challenge management
   app.get('/manage', function (req, res) {
     res.sendFile('client/manage-challenge/index.html', fileOptions, handleFileError);
   });
 
+  //create/edit challenge
   app.get('/edit', function (req, res) {
     res.sendFile('client/edit-challenge/index.html', fileOptions, handleFileError);
+  });
+
+  //default direct to manage page
+  app.get('/', function (req, res) {
+    res.redirect('/manage');
   });
 
   //server config

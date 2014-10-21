@@ -1,0 +1,71 @@
+<div>
+  <!--sub headers-->
+  <header class="sub-header">
+    <div class="ui-container">
+      <!--actions-->
+      <div class="actions desktop">
+        <a href="/edit/#/new" class="btn add-new"><i></i>New Challenge</a>
+      </div>  
+      <!-- End .actions -->
+      <h3>
+        <i></i>Challenge Listing
+      </h3>
+    </div>
+  </header>
+
+  <div class="ui-container">
+    <table data-ng-table="vm.tableParams" class="table subAppTable {{browser==='safari'?'safari':''}}">
+      <thead>
+        <tr>
+          <th class="checkAll">
+          &nbsp;
+          </th>
+          <!-- Configurable Headers -->
+          <th class=" sortable" data-ng-class="{
+          'sort-asc': vm.tableParams.isSortBy(header.col, 'asc'),
+          'sort-desc': vm.tableParams.isSortBy(header.col, 'desc')
+          }" data-ng-repeat="header in vm.columnHeaders">
+            <div data-ng-click="vm.tableParams.sorting(header.col, vm.tableParams.isSortBy(header.col, 'asc') ? 'desc' : 'asc')">{{header.colName}}<i></i></div>
+          </th>
+          <th data-ng-if="!phone" class="text-center" colspan="3"><div>Action</div></th>
+        </tr>
+      </thead>
+    
+      <tbody data-ng-repeat="challenge in $data">
+        <tr data-ng-class="$odd?'odd':''">
+          <td>
+          &nbsp;
+          </td>
+          <td class="text-left" data-sortable="'name'">
+            <a ng-href="{{vm.tcChallengeDetailsURL(challenge)}}" target="_blank">{{challenge.name}}</a>
+          </td>
+          <td class="text-left" data-sortable="'account.name'">
+          {{challenge.account.name}}
+          </td>
+          <td class="text-left" data-sortable="'lastUpdatedAt'">
+          {{challenge.lastUpdatedAt}}
+          </td>
+          <td data-ng-if="!phone" class="text-left" data-sortable="'status'">
+          {{challenge.status}}
+          </td>
+          <td data-ng-if="!phone" class="action-btn" ng-switch on="challenge.status">
+            <a ng-href="#/challenges/{{challenge.id}}/submissions" class="edit" ng-switch-when="Review" title="View Submissions">{{challenge.id}}</a>
+            <a ng-href="#/challenges/{{challenge.id}}/submissions" class="edit" ng-switch-when="Submission" title="View Submissions">{{challenge.id}}</a>
+            <a ng-href="#/challenges/{{challenge.id}}/results" class="edit" ng-switch-when="Complete" title="View Results">{{challenge.id}}</a>
+            <a ng-href="/edit/#/{{challenge.id}}" class="edit" ng-switch-default title="Edit Challenge">{{challenge.id}}</a>
+          </td>
+          <td data-ng-if="!phone" class="action-btn">
+            <a href="javascript:void(0);" ng-click="vm.deleteChallenge(challenge)" class="delete" data-ng-if="challenge.status === 'Draft'" title="Delete Challenge"></a>
+            
+          </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div class="custom-pager">
+      <span data-ng-if="!phone" class="label">Showing items <b>1-10</b> of <b>{{vm.tableParams.total()}}</b></span>
+    </div>
+
+  </div>
+</div>

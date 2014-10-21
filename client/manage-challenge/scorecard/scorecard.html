@@ -1,0 +1,76 @@
+<div>
+  <!--sub headers-->
+  <header class="sub-header">
+    <div class="ui-container">
+      <!--actions-->
+      <div class="actions desktop">
+        <a href="javascript:void(0);" ng-click="xx()" class="btn add-new" style="width:90px"><i></i>Save</a>
+        <a href="javascript:history.back()" class="btn add-new" style="width:100px"><i></i>Cancel</a>
+      </div>
+      <!--actions-->
+      <div class="actions mobile">
+
+        <a href="javascript:" class="btn filter {{filter_popover_open?'active':''}}" data-ng-click="filter_open()"><i></i></a>
+
+        <div class="btn-group">
+          <label class="btn {{view}}" data-ng-click="toggleView()"><i></i>
+          </label>
+        </div>
+      </div>
+      <!--title-->
+      <div>
+        <h3>
+          <i></i>Scorecard
+        </h3>
+        <!-- TODO: remove hard-coded link; -->
+        <a href="http://www.topcoder.com/challenge-details/{{challenge.id}}" target="_blank">{{challenge.name}}</a> / <a href="#/challenges/{{challenge.id}}/submissions">Submissions</a> / {{scorecard.sequence}} / Scorecard
+      </div>
+    </div>
+  </header>
+  <div class="ui-container">
+    <table data-ng-table="tableParams" class="table subAppTable {{browser==='safari'?'safari':''}}">
+      <thead>
+        <tr>
+          <th class="checkAll">
+            &nbsp;
+          </th>
+          <th data-ng-repeat="header in columnHeaders">
+            <div>{{header.colName}}</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="{{checkboxes.items[scoreItem.id]?'select':''}}" data-ng-class="$odd?'odd':''" data-ng-repeat="scoreItem in $data">
+          <td>
+            &nbsp;
+          </td>
+          <td class="text-left">
+            {{scoreItem.id}}
+          </td>
+          <td class="text-left">
+            {{scoreItem.requirement.text}}
+          </td>
+
+          <td>
+        <!-- {{$index}} -->
+
+            <div class="btn-group pull-left" data-toggle="buttons-radio" >
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Remove score selection" btn-radio="''" checked="checked" >unscored</button>
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Incomplete or does not meet Expectations" btn-radio="'0'">0</button>
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Well below expectations" btn-radio="'1'">1</button>
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Slightly below expectations" btn-radio="'2'">2</button>
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Meets expectations" btn-radio="'3'">3</button>
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Exceeds expectations" btn-radio="'4'">4</button>
+
+            </div>
+          </td>
+          <td data-ng-if="!phone" class="text-left" data-sortable="'col4'">
+            <textarea ng-model="scoreItem.comment" rows="3" cols="50" placeholder="Optional comment"></textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--end table-->
+
+  </div>
+</div>
