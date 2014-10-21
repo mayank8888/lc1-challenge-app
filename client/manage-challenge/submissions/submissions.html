@@ -7,17 +7,12 @@
             <!-- TODO: remove disabled; hook up dialog -->
             <a href="javascript:void(0);" class="btn add-new disabled" style="width:180px"><i></i>Announce Winners</a>
         </div>
-        <!--actions-->
-        <div class="actions mobile">
-
-            <a href="javascript:void(0);" class="btn filter {{filter_popover_open?'active':''}}" data-ng-click="filter_open()"><i></i></a>
-        </div>
         <!--title-->
         <div>
           <h3>
             <i></i>Submissions
           </h3>
-          <a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}}</a> / Submissions
+          <a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / Submissions
         </div>
     </div>
   </header>

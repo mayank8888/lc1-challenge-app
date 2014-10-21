@@ -36,8 +36,11 @@
           <td>
           &nbsp;
           </td>
-          <td class="text-left" data-sortable="'name'">
-            <a ng-href="{{vm.tcChallengeDetailsURL(challenge)}}" target="_blank">{{challenge.name}} <i data-ng-if="challenge.status!='Draft'" class="fa fa-sm fa-external-link-square"></i></a>
+          <td class="text-left" data-sortable="'name'" ng-switch on="challenge.status">
+            <a ng-href="/edit/#/challenges/{{challenge.id}}/edit" ng-switch-when="Draft">{{challenge.name}} <i></i></a>
+
+            <a ng-href="{{vm.tcChallengeDetailsURL(challenge)}}" target="_blank" ng-switch-default>{{challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a>
+
           </td>
           <td class="text-left" data-sortable="'account.name'">
           {{challenge.account.name}}
