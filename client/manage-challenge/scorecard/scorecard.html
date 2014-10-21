@@ -4,7 +4,7 @@
     <div class="ui-container">
       <!--actions-->
       <div class="actions desktop">
-        <a href="javascript:void(0);" ng-click="xx()" class="btn add-new" style="width:90px"><i></i>Save</a>
+        <a href="javascript:void(0);" ng-click="vm.saveScorecard()" class="btn add-new" style="width:90px"><i></i>Save</a>
         <a href="javascript:history.back()" class="btn add-new" style="width:100px"><i></i>Cancel</a>
       </div>
       <!--actions-->
@@ -23,18 +23,18 @@
           <i></i>Scorecard
         </h3>
         <!-- TODO: remove hard-coded link; -->
-        <a href="http://www.topcoder.com/challenge-details/{{challenge.id}}" target="_blank">{{challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / <a href="#/challenges/{{challenge.id}}/submissions">Submissions</a> / {{scorecard.sequence}} / Scorecard
+        <a href="http://www.topcoder.com/challenge-details/{{vm.challenge.id}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / <a href="#/challenges/{{vm.challenge.id}}/submissions">Submissions</a> / {{vm.scorecard.sequence}} / Scorecard
       </div>
     </div>
   </header>
   <div class="ui-container">
-    <table data-ng-table="tableParams" class="table subAppTable {{browser==='safari'?'safari':''}}">
+    <table data-ng-table="vm.tableParams" class="table subAppTable {{browser==='safari'?'safari':''}}">
       <thead>
         <tr>
           <th class="checkAll">
             &nbsp;
           </th>
-          <th data-ng-repeat="header in columnHeaders">
+          <th data-ng-repeat="header in vm.columnHeaders">
             <div>{{header.colName}}</div>
           </th>
         </tr>

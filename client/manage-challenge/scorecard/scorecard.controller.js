@@ -2,9 +2,11 @@
   'use strict';
 
   angular.module('manageChallenge')
-    .controller("ScorecardController", ['$scope', '$routeParams', 'browser', 'matchmedia', 'ngTableParams', 'ChallengeService', 'ManageChallengeUtils',
-      function returnScorecardController($scope, $routeParams, browser, matchmedia, ngTableParams, ChallengeService, Utils) {
+    .controller('ScorecardController', ScorecardController);
 
+    ScorecardController.$inject = ['$location', '$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedScorecard', 'resolvedCurrentChallenge'];
+    function ScorecardController($location, $scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedScorecard, resolvedCurrentChallenge) {
+        //dummy data
         var scoreItems = [
           {
             "requirement": {
@@ -24,23 +26,20 @@
           }
         ];
 
-        $scope.scoreItems = scoreItems;
+      var vm = this;
+      vm.scoreItems = scoreItems;
+      vm.scorecard = resolvedScorecard;
+      vm.challenge = resolvedCurrentChallenge;
+      vm.tcChallengeDetailsURL = tcChallengeDetailsURL;
+      vm.saveScorecard = saveScorecard;
 
-        ChallengeService.getChallenge($routeParams.challengeId).then(function (challenge) {
-          $scope.challenge = challenge;
-          ChallengeService.getScorecard(challenge.id, $routeParams.submissionId).then(function (scorecard) {
-            $scope.scorecard = scorecard;
-          });
-        });
+      //user-agent stuff
+      vm.browser = Utils.getBrowser();
+      vm.phone = matchmedia.isPhone();
 
-        $scope.saveScorecard = function () {
-          //TODO: Implement
-        }
+      activate();
 
-        //user-agent stuff
-        $scope.portrait = false;
-        $scope.browser = browser();
-        $scope.phone = matchmedia.isPhone();
+      function activate() {
 
 
         //table stuff
@@ -64,9 +63,22 @@
           }
         ];
 
-        Utils.handleTable(vm, $scope, ngTableParams, headers, scoreItems, sort);
 
+        Utils.handleTable(vm, $scope, headers, vm.scoreItems, sort);
       }
-    ])
+      
+      //helper functions
+      function tcChallengeDetailsURL(challenge) {
+        return TC_URLS.baseDetailsURL + challenge.id;
+      }
+
+      function saveScorecard() {
+        //TODO: implement
+        console.log('implement save scorecard');
+        $location.path('/challenges/' + vm.challenge.id + '/submissions/')
+      }
+
+    }
+    
 
 })(window, window.angular);

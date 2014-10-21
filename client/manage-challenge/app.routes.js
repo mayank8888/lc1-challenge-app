@@ -50,7 +50,15 @@
       .when("/challenges/:challengeId/submissions/:submissionId/scorecard", {
         controller: "ScorecardController",
         controllerAs: "vm",
-        templateUrl: "scorecard/scorecard.html"
+        templateUrl: "scorecard/scorecard.html",
+        resolve: {
+          resolvedScorecard: function getScorecard($route, ChallengeService) {
+            return ChallengeService.getScorecard($route.current.params.challengeId, $route.current.params.submissionId);
+          },
+          resolvedCurrentChallenge: function getChallenge($route, ChallengeService) {
+            return ChallengeService.getChallenge($route.current.params.challengeId);
+          }          
+        }
       })
 
       //show results for a challenge
