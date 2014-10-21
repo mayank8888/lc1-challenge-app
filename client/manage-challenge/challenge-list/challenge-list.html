@@ -37,7 +37,7 @@
           &nbsp;
           </td>
           <td class="text-left" data-sortable="'name'">
-            <a ng-href="{{vm.tcChallengeDetailsURL(challenge)}}" target="_blank">{{challenge.name}}</a>
+            <a ng-href="{{vm.tcChallengeDetailsURL(challenge)}}" target="_blank">{{challenge.name}} <i data-ng-if="challenge.status!='Draft'" class="fa fa-sm fa-external-link-square"></i></a>
           </td>
           <td class="text-left" data-sortable="'account.name'">
           {{challenge.account.name}}
@@ -49,14 +49,13 @@
           {{challenge.status}}
           </td>
           <td data-ng-if="!phone" class="action-btn" ng-switch on="challenge.status">
-            <a ng-href="#/challenges/{{challenge.id}}/submissions" class="edit" ng-switch-when="Review" title="View Submissions">{{challenge.id}}</a>
-            <a ng-href="#/challenges/{{challenge.id}}/submissions" class="edit" ng-switch-when="Submission" title="View Submissions">{{challenge.id}}</a>
-            <a ng-href="#/challenges/{{challenge.id}}/results" class="edit" ng-switch-when="Complete" title="View Results">{{challenge.id}}</a>
-            <a ng-href="/edit/#/{{challenge.id}}" class="edit" ng-switch-default title="Edit Challenge">{{challenge.id}}</a>
+            <a ng-href="#/challenges/{{challenge.id}}/submissions" class="fa fa-2x fa-eye" ng-switch-when="Review" title="View Submissions"></a>
+            <a ng-href="#/challenges/{{challenge.id}}/submissions" class="fa fa-2x fa-eye" ng-switch-when="Submission" title="View Submissions"></a>
+            <a ng-href="#/challenges/{{challenge.id}}/results" class="fa fa-2x fa-eye" ng-switch-when="Complete" title="View Results"></a>
+            <a ng-href="/edit/#/{{challenge.id}}" class="fa fa-2x fa-pencil" ng-switch-default title="Edit Challenge"></a>
           </td>
           <td data-ng-if="!phone" class="action-btn">
-            <a href="javascript:void(0);" ng-click="vm.deleteChallenge(challenge)" class="delete" data-ng-if="challenge.status === 'Draft'" title="Delete Challenge"></a>
-            
+            <a href="javascript:void(0);" ng-click="vm.deleteChallenge(challenge)" class="fa fa-2x fa-trash" data-ng-if="challenge.status === 'Draft'" title="Delete Challenge"></a>            
           </td>
         </tr>
         </tbody>
