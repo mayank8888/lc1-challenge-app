@@ -1,6 +1,6 @@
 # install bower on edit
 cd client
-../../node_modules/bower/bin/bower install
+../node_modules/bower/bin/bower install
 
 #cd ../manage-challenge/
 #../../node_modules/bower/bin/bower install
