@@ -61,11 +61,11 @@
                     <!-- TODO: logic for actions -->
                     <td data-ng-if="!phone" class="action-btn">
                         <!-- use download attribute to do download -->
-                        <a href="{{scorecard.submission.url}}" download class="edit" title="Download Submission"></a>
+                        <a href="{{scorecard.submission.url}}" download class="fa fa-2x fa-download" title="Download Submission"></a>
                     </td>
                      <td data-ng-if="!phone" class="action-btn">
-                        <a ng-if="submission.status === 'New'" href="#/challenges/{{challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="copy" title="Create Scorecard"></a>
-                        <a ng-if="submission.status !== 'New'" href="#/challenges/{{challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="copy" title="Review Scorecard"></a>
+                        <a ng-if="submission.status === 'New'" href="#/challenges/{{challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="fa fa-check-square fa-2x" title="Create Scorecard"></a>
+                        <a ng-if="submission.status !== 'New'" href="#/challenges/{{challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="fa fa-check fa-2x" title="Review Scorecard"></a>
                     </td>
                 </tr>
             </tbody>
