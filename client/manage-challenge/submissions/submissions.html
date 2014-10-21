@@ -5,7 +5,7 @@
         <!--actions-->
         <div class="actions desktop">
             <!-- TODO: remove disabled; hook up dialog -->
-            <a href="javascript:void(0);" class="btn add-new disabled" style="width:180px"><i></i>Announce Winners</a>
+            <a href="javascript:void(0);" class="btn disabled" style="width:180px">Announce Winners</a>
         </div>
         <!--title-->
         <div>
@@ -56,11 +56,11 @@
               <!-- TODO: logic for actions -->
               <td data-ng-if="!phone" class="action-btn">
                   <!-- use download attribute to do download -->
-                  <a href="{{scorecard.submission.url}}" download class="edit" title="Download Submission"></a>
+                  <a href="{{scorecard.submission.url}}" download class="fa fa-2x fa-download" title="Download Submission"></a>
               </td>
                <td data-ng-if="!phone" class="action-btn">
-                  <a ng-if="submission.status === 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="copy" title="Create Scorecard"></a>
-                  <a ng-if="submission.status !== 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="copy" title="Review Scorecard"></a>
+                  <a ng-if="submission.status === 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="fa fa-2x fa-check" title="Create Scorecard"></a>
+                  <a ng-if="submission.status !== 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="fa fa-2x fa-check-square" title="Review Scorecard"></a>
               </td>
           </tr>
       </tbody>
