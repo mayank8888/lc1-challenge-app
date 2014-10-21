@@ -1,5 +1,5 @@
 describe('Unit: ChallengeListController', function() {
-  var ctrl, scope, tcUrls;
+  var ctrl, scope, TC_URLS;
 
   beforeEach(module('manageChallenge'));  
 
@@ -26,9 +26,9 @@ describe('Unit: ChallengeListController', function() {
 
   // inject the $controller and $rootScope services
   // in the beforeEach block
-  beforeEach(inject(function($controller, $rootScope, TC_URLS) {
+  beforeEach(inject(function($controller, $rootScope, _TC_URLS_) {
 
-   tcUrls = TC_URLS;
+   TC_URLS = _TC_URLS_;
 
     // Create the controller
     ctrl = $controller('ChallengeListController as vm', {
@@ -39,6 +39,11 @@ describe('Unit: ChallengeListController', function() {
   }));  
 
   /** Tests */
+  it('all public apis available', 
+    function() {
+      expect(angular.isFunction(ctrl.toTCChallengeDetailsURL)).toBe(true);
+      expect(angular.isFunction(ctrl.deleteChallenge)).toBe(true);
+  });  
 
   it('loads all challenges', 
     function() {
@@ -57,7 +62,7 @@ describe('Unit: ChallengeListController', function() {
 
   it('should provide the correct url to the challenge details page on the tc site', 
     function() {      
-      expect(ctrl.tcChallengeDetailsURL(challenges[0])).toEqual(tcUrls.baseDetailsURL + challenges[0].id);
+      expect(ctrl.toTCChallengeDetailsURL(challenges[0])).toEqual(TC_URLS.baseDetailsURL + challenges[0].id);
   });  
 
 })

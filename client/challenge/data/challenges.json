@@ -2,12 +2,22 @@
   {
     "id": 1,
     "name": "Asteroid Data Hunter - System Architecture",
+    "lastUpdatedAt": "2014/09/29 9:02 PM",
+    "status": "Review",    
     "account": {
       "id": "a1",
       "name": "IQSS-NTL"
     },
-    "lastUpdatedAt": "2014/09/29 9:02 PM",
-    "status": "Review"
+    "requirements": [
+      {
+        "id": 1,
+        "text": "requirement 1"
+      },
+      {
+        "id": 2,
+        "text": "requirement 2"
+      }
+    ]
   },
   {
     "id": 2,

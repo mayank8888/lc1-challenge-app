@@ -13,7 +13,7 @@
    * @returns 
    * @ngInject
    */
-  ChallengeService.$inject = ['$http', '$q', 'Utils'];
+  //ChallengeService.$inject = ['$http', '$q', 'Utils'];
   function ChallengeService($http, $q, Utils) {
     var _challenges;
     

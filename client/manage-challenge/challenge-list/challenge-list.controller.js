@@ -16,7 +16,7 @@
   function ChallengeListController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallenges) {
     var vm = this;
     vm.challenges = resolvedChallenges;
-    vm.tcChallengeDetailsURL = tcChallengeDetailsURL;
+    vm.toTCChallengeDetailsURL = toTCChallengeDetailsURL;
     vm.deleteChallenge = deleteChallenge;
 
     //user-agent stuff
@@ -53,7 +53,7 @@
     }
 
     //helper functions
-    function tcChallengeDetailsURL(challenge) {
+    function toTCChallengeDetailsURL(challenge) {
       return TC_URLS.baseDetailsURL + challenge.id;
     }
 
