@@ -4,7 +4,6 @@
   angular.module('manageChallenge')
     .controller('ChallengeListController', ChallengeListController);
 
-  //TODO(DG: 10/20/2014): Cleanup params + add jsdoc
   /**
    * @name ChallengeListController
    * @desc 
@@ -13,7 +12,7 @@
    * @returns 
    * @ngInject
    */
-  ChallengeListController.$inject = ['$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedChallenges'];
+  //ChallengeListController.$inject = ['$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedChallenges'];
   function ChallengeListController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallenges) {
     var vm = this;
     vm.challenges = resolvedChallenges;
