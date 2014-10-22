@@ -7,7 +7,9 @@
           <h3>
             <i></i>Results
           </h3>
-          <a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / Results
+          <!-- /* TODO (BG: 10/22/2014): make breadcrumb an Angular component */ -->
+          <!--breadcrumb-->
+          <span class="aaf-sa-breadcrumb"><a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / Results </span>
         </div>
     </div>
   </header>

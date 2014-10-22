@@ -23,7 +23,9 @@
           <i></i>Scorecard
         </h3>
         <!-- TODO: remove hard-coded link; -->
-        <a href="http://www.topcoder.com/challenge-details/{{vm.challenge.id}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / <a href="#/challenges/{{vm.challenge.id}}/submissions">Submissions</a> / {{vm.scorecard.sequence}} / Scorecard
+        <!-- /* TODO (BG: 10/22/2014): make breadcrumb an Angular component */ -->
+        <!--breadcrumb-->
+        <span class="aaf-sa-breadcrumb"><a href="http://www.topcoder.com/challenge-details/{{vm.challenge.id}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / <a href="#/challenges/{{vm.challenge.id}}/submissions">Submissions</a> / {{vm.scorecard.sequence}} / Scorecard </span>
       </div>
     </div>
   </header>
