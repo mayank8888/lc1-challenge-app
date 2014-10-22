@@ -19,7 +19,7 @@
       </div>
       <!--title-->
       <div>
-        <h3>
+        <h3 class="aaf-sa-subappname">
           <i></i>Scorecard
         </h3>
         <!-- TODO: remove hard-coded link; -->
@@ -57,7 +57,7 @@
         <!-- {{$index}} -->
 
             <div class="btn-group pull-left" data-toggle="buttons-radio" >
-              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Remove score selection" btn-radio="''" checked="checked" >unscored</button>
+              <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Remove score selection" btn-radio="''" checked="checked" ><span class="fa fa-ban"></span></button>
               <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Incomplete or does not meet Expectations" btn-radio="'0'">0</button>
               <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Well below expectations" btn-radio="'1'">1</button>
               <button type="button" ng-model="scoreItem.score" class="btn btn-score" tooltip="Slightly below expectations" btn-radio="'2'">2</button>
@@ -67,7 +67,8 @@
             </div>
           </td>
           <td data-ng-if="!phone" class="text-left" data-sortable="'col4'">
-            <textarea ng-model="scoreItem.comment" rows="3" cols="50" placeholder="Optional comment"></textarea>
+              <button type="button" ng-model="" class="btn default" tooltip="Comment on this rating"><span class="fa fa-comment"></span></button>
+            <!-- textarea ng-model="scoreItem.comment" rows="3" cols="50" placeholder="Optional comment"></textarea -->
           </td>
         </tr>
       </tbody>
