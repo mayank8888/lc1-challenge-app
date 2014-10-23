@@ -2646,6 +2646,9 @@ footer {
         margin-right: 15px;
         background: #fff;
         cursor: pointer;
+        /* Additions to accomodate fa icons */
+        padding-left: 6px;
+		padding-top: 5px;
     }
 }
     .sub-header .actions{
