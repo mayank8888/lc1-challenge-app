@@ -5,7 +5,7 @@
       <!--actions-->
       <div class="actions desktop">
         <a href="/edit/#/new" class="btn add-new"><i></i>New Challenge</a>
-      </div>  
+      </div>
       <!-- End .actions -->
       <h3>
         <i></i>Challenge Listing
@@ -30,7 +30,7 @@
           <th data-ng-if="!phone" class="text-center" colspan="3"><div>Action</div></th>
         </tr>
       </thead>
-    
+
       <tbody data-ng-repeat="challenge in $data">
         <tr data-ng-class="$odd?'odd':''">
           <td>
@@ -55,10 +55,11 @@
             <a ng-href="#/challenges/{{challenge.id}}/submissions" class="fa fa-2x fa-eye" ng-switch-when="Review" title="View Submissions"></a>
             <a ng-href="#/challenges/{{challenge.id}}/submissions" class="fa fa-2x fa-eye" ng-switch-when="Submission" title="View Submissions"></a>
             <a ng-href="#/challenges/{{challenge.id}}/results" class="fa fa-2x fa-eye" ng-switch-when="Complete" title="View Results"></a>
-            <a ng-href="/edit/#/{{challenge.id}}" class="fa fa-2x fa-pencil" ng-switch-default title="Edit Challenge"></a>
+            <!-- <a ng-href="/edit/#/{{challenge.id}}" class="fa fa-2x fa-pencil" ng-switch-default title="Edit Challenge"></a> -->
+          <a ng-href="/edit/#/new" class="fa fa-2x fa-pencil" ng-switch-default title="Edit Challenge"></a>
           </td>
           <td data-ng-if="!phone" class="action-btn">
-            <a href="javascript:void(0);" ng-click="vm.deleteChallenge(challenge)" class="fa fa-2x fa-trash" data-ng-if="challenge.status === 'Draft'" title="Delete Challenge"></a>            
+            <a href="javascript:void(0);" ng-click="vm.deleteChallenge(challenge)" class="fa fa-2x fa-trash" data-ng-if="challenge.status === 'Draft'" title="Delete Challenge"></a>
           </td>
         </tr>
         </tbody>
