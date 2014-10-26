@@ -25,8 +25,20 @@
   });
 
   app.get('/edit', function (req, res) {
-    res.sendFile('client/edit-challenge/index.html', fileOptions, handleFileError);
+    res.sendFile('client/edit-challenge/public-info.html', fileOptions, handleFileError);
   });
+
+  // routes for mock API controllers
+  var bodyParser = require('body-parser');
+  app.use(bodyParser.json());
+  
+  var challenges = require('./routes/challenges');
+  var tags = require('./routes/tags');
+  var accounts = require('./routes/accounts');
+  app.use('/challenges', challenges);
+  app.use('/tags', tags);
+  app.use('/accounts', accounts);
+
 
   //server config
   var port = Number(process.env.PORT || 8000);

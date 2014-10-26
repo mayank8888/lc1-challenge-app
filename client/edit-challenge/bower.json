@@ -7,7 +7,6 @@
   "private": true,
   "dependencies": {
     "angular": "1.2.x",
-    "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
@@ -21,6 +20,9 @@
     "angular-placeholder-tai": "~1.0.1",
     "ng-table": "~0.3.3",
     "html5shiv": "~3.7.2",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "restangular": "~1.4.0",
+    "angular-ui-router": "~0.2.11",
+    "moment": "~2.8.3"
   }
 }
