@@ -5,14 +5,16 @@
         <!--actions-->
         <div class="actions desktop">
             <!-- TODO: remove disabled; hook up dialog -->
-            <a href="javascript:void(0);" class="btn add-new disabled" style="width:180px"><i></i>Announce Winners</a>
+            <a href="javascript:void(0);" class="btn disabled" style="width:180px">Announce Winners</a>
         </div>
         <!--title-->
         <div>
           <h3>
-            <i></i>Submissions
+            <i class="fa fa-file-archive-o"></i>Submissions
           </h3>
-          <a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / Submissions
+          <!-- /* TODO (BG: 10/22/2014): make breadcrumb an Angular component */ -->
+          <!--breadcrumb-->
+          <span class="aaf-sa-breadcrumb"><a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / Submissions </span>
         </div>
     </div>
   </header>
@@ -56,11 +58,11 @@
               <!-- TODO: logic for actions -->
               <td data-ng-if="!phone" class="action-btn">
                   <!-- use download attribute to do download -->
-                  <a href="{{scorecard.submission.url}}" download class="edit" title="Download Submission"></a>
+                  <a href="{{scorecard.submission.url}}" download class="fa fa-2x fa-download" title="Download Submission"></a>
               </td>
                <td data-ng-if="!phone" class="action-btn">
-                  <a ng-if="submission.status === 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="copy" title="Create Scorecard"></a>
-                  <a ng-if="submission.status !== 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="copy" title="Review Scorecard"></a>
+                  <a ng-if="submission.status === 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="fa fa-2x fa-check-square-o" title="Create Scorecard"></a>
+                  <a ng-if="submission.status !== 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.sequence}}/scorecard" class="fa fa-2x fa-check-square" title="Review Scorecard"></a>
               </td>
           </tr>
       </tbody>
