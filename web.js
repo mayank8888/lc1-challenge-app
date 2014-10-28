@@ -30,7 +30,11 @@
     res.sendFile('client/edit-challenge/public-info.html', fileOptions, handleFileError);
   });
 
-<<<<<<< HEAD
+  //default direct to manage page
+  app.get('/', function (req, res) {
+    res.redirect('/manage');
+  });
+
   // routes for mock API controllers
   var bodyParser = require('body-parser');
   app.use(bodyParser.json());
@@ -41,13 +45,6 @@
   app.use('/challenges', challenges);
   app.use('/tags', tags);
   app.use('/accounts', accounts);
-
-=======
-  //default direct to manage page
-  app.get('/', function (req, res) {
-    res.redirect('/manage');
-  });
->>>>>>> upstream/master
 
   //server config
   var port = Number(process.env.PORT || 8000);
