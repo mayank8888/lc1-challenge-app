@@ -13,4 +13,4 @@
 
 ## Heroku
 add buildpack for node and grunt
-`heroku config:set BULIDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git`
+`heroku config:set BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git`

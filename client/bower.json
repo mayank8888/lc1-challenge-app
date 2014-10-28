@@ -1,12 +1,13 @@
 {
-  "name": "create-challenge",
-  "description": "Create Challenge page for the Create Challenge App",
+  "name": "lc1-challenge-app",
+  "description": "Topcoder Challenge Management",
   "version": "0.0.1",
   "homepage": "https://github.com/appirio-tech/lc1-challenge-app",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "angular": "1.2.x",
+    "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
@@ -21,12 +22,6 @@
     "ng-table": "~0.3.3",
     "html5shiv": "~3.7.2",
     "lodash": "~2.4.1",
-<<<<<<< HEAD
-    "restangular": "~1.4.0",
-    "angular-ui-router": "~0.2.11",
-    "moment": "~2.8.3"
-=======
     "fontawesome":"~4.2"
->>>>>>> upstream/master
   }
 }

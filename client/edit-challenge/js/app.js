@@ -65,8 +65,31 @@
             challenge: function getChallenge($stateParams, ChallengeService) {
               return ChallengeService.getChallenge($stateParams.challengeId);
             }
+<<<<<<< HEAD
           }
         });
+=======
+          });
+      }
+    ])
+
+    .controller('NewChallengeController', NewChallengeController)
+    .controller('EditChallengeController', EditChallengeController);
+
+  function NewChallengeController($location) {
+    //TODO: stub code. Actually create a challenge
+    var newChallengeId = Date.now();
+
+    //after challenge has been created redirect user to edit page for that challenge
+    $location.path('/challenges/' + newChallengeId + '/edit').replace();
+  }
+
+  function EditChallengeController($log, $routeParams, $scope) {
+    //TODO: stub code. Implement
+    $log.debug('TODO: Show edit page for challenge: ' + $routeParams.challengeId);
+    $scope.challenge = {
+      id: $routeParams.challengeId
+>>>>>>> upstream/master
     }
 
   ]);
