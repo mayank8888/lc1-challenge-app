@@ -1,5 +1,3 @@
-console.log('in this one2');
-
 (function (window, angular, undefined) {
   'use strict';
 
