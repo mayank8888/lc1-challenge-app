@@ -18,6 +18,8 @@
     var _challenges;
     
     var serviceAPI = {
+      apiCall: apiCall,
+      initCase: initCase,
       getBrowser: getBrowser,
       getJsonData: getJsonData,
       handleTable: handleTable
@@ -73,6 +75,26 @@
           deferred.reject(data);
         });
       return deferred.promise;
+    }
+
+    function apiCall(uri) {
+      var deferred = $q.defer();
+      
+      $http({method: 'GET', url: '/api'})
+        .success(function (data, status, headers, config) {
+          console.log('got this data: ', data.content);
+          deferred.resolve(data.content);
+        })
+        .error(function (data, status, headers, config) {
+          deferred.reject(data);
+        });
+      return deferred.promise;
+    }
+
+    function initCase(str) {
+      return str.toLowerCase().replace(/(?:^|\s)[a-z]/g, function (m) {
+            return m.toUpperCase();
+      });      
     }
 
   }
