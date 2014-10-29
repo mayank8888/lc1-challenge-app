@@ -32,7 +32,7 @@
       var headers = [
         {
           "colName": "Name",
-          "col": "name"
+          "col": "title"
         },
         {
           "colName": "Account",
@@ -40,7 +40,7 @@
         },
         {
           "colName": "Last Updated",
-          "col": "lastUpdatedAt"
+          "col": "updatedAt"
         },
         {
           "colName": "Status",
@@ -60,6 +60,7 @@
     function deleteChallenge(challenge) {
       ChallengeService.deleteChallenge(challenge.id);
     }
+
   }
 
 
