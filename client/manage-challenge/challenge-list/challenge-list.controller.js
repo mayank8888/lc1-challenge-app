@@ -36,7 +36,7 @@
         },
         {
           "colName": "Account",
-          "col": "account.name"
+          "col": "account.title"
         },
         {
           "colName": "Last Updated",
