@@ -48,7 +48,7 @@
         }
       ];
 
-      var sort = {lastUpdatedAt: 'desc'};
+      var sort = {updatedAt: 'desc'};
       Utils.handleTable(vm, $scope, headers, vm.challenges, sort);      
     }
 
