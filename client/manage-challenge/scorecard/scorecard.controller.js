@@ -11,7 +11,7 @@
           {
             "requirement": {
               "id": 1,
-              "text": "Requirement 1 blah blah blah"
+              "text": "Requirement 1 description"
             },
             "score": '4',
             "comment": 'smart solution'
@@ -19,7 +19,7 @@
           {
             "requirement": {
               "id": 2,
-              "text": "Requirement 2 blah blah blah"
+              "text": "Requirement 2 description"
             },
             "score": '',
             "comment": null
