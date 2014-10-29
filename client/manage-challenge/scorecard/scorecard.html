@@ -30,15 +30,23 @@
     </div>
   </header>
   <div class="ui-container">
-    <table data-ng-table="vm.tableParams" class="table subAppTable {{browser==='safari'?'safari':''}}">
+    <table data-ng-table="vm.tableParams" class="table subAppTable {{browser==='safari'?'safari':''}}" id="serenity-scorecardtable">
       <thead>
         <tr>
           <th class="checkAll">
             &nbsp;
           </th>
-          <th data-ng-repeat="header in vm.columnHeaders">
-            <div>{{header.colName}}</div>
-          </th>
+         <!-- BG: temporarily replaced bg-repeat for column headers w/explicit <th>'s so that I can try to set explicit widths on the columns. -->
+         <th id="serenity-scorecardtable-colname-id">
+          <div>{{vm.columnHeaders[0].colName}}</div>
+         </th>
+         <th id="serenity-scorecardtable-colname-requirement">
+          <div>{{vm.columnHeaders[1].colName}}</div>
+         </th>
+         <th id="serenity-scorecardtable-colname-scoring">
+          <div>{{vm.columnHeaders[2].colName}}</div>
+         </th>         
+         <!-- BG: /end of temporary table fixes -->
         </tr>
       </thead>
       <tbody>
@@ -46,8 +54,8 @@
           <td>
             &nbsp;
           </td>
-          <td class="text-left">
-            {{scoreItem.id}}
+          <td class="text-left idColumn">
+            {{scoreItem.requirement.id}}
           </td>
           <td class="text-left">
             {{scoreItem.requirement.text}}
@@ -66,9 +74,9 @@
 
             </div>
           </td>
-          <td data-ng-if="!phone" class="text-left" data-sortable="'col4'">
+          <!-- td data-ng-if="!phone" class="text-left" data-sortable="'col4'">
             <textarea ng-model="scoreItem.comment" rows="3" cols="50" placeholder="Optional comment"></textarea>
-          </td>
+          </td -->
         </tr>
       </tbody>
     </table>

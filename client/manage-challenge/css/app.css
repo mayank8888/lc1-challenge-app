@@ -3025,7 +3025,7 @@ footer {
 
     .table > tbody > tr > td{
         padding: 6px 0;
-        height: 41px;
+        min-height: 41px;
         vertical-align: middle;
         border-bottom: 1px solid #ccc;
         border-top: 0 solid transparent;
@@ -3761,3 +3761,32 @@ h3.aaf-sa-subappname {
 	margin-top: -2px;
 	display: block;
 }
+
+/* styling for table that appears on 'scorecard.html' only */
+#serenity-scorecardtable td {
+	vertical-align: top;
+}
+#serenity-scorecardtable-colname-id {
+	width: 4%;
+}
+#serenity-scorecardtable-colname-requirement {
+	padding-right: 10px;
+}
+#serenity-scorecardtable-colname-scoring {
+	width: 20%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

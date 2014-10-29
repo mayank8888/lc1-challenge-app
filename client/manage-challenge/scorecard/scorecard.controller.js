@@ -11,7 +11,7 @@
           {
             "requirement": {
               "id": 1,
-              "text": "Requirement 1 blah blah blah"
+              "text": "Send us, bright one, light one, Horhorn, quickening and wombfruit. Send us, bright one, light one, Horhorn, quickening and wombfruit. Send us bright one, light one, Horhorn, quickening and wombfruit."
             },
             "score": '4',
             "comment": 'smart solution'
@@ -19,7 +19,15 @@
           {
             "requirement": {
               "id": 2,
-              "text": "Requirement 2 blah blah blah"
+              "text": "Hoopsa, boyaboy, hoopsa! Hoopsa, hoyaboy, hoopsa! Hoopsa, boyaboy, hoopsa."
+            },
+            "score": '',
+            "comment": null
+          },
+          {
+            "requirement": {
+              "id": 3,
+              "text": "Universally that person's acumen is esteemed very little perceptive concerning whatsoever matters are being held as most profitable by mortals with sapience endowed to be studied who is ignorant of that which the most in doctrine erudite and certainly by reason of that in them high mind's ornament deserving of veneration constantly maintain when by general consent they affirm that other circumstances being equal by no exterior splendour is the prosperity of a nation more efficaciously asserted."
             },
             "score": '',
             "comment": null
@@ -46,8 +54,8 @@
         var sort = {sequence: 'asc'};
         var headers = [
           {
-            "colName": "Id",
-            "col": "sequence"
+            "colName": "#",
+            "col": "id"
           },
           {
             "colName": "Requirement",
@@ -57,10 +65,6 @@
             "colName": "Score",
             "col": "score"
           },
-          {
-            "colName": "Comment",
-            "col": "comment"
-          }
         ];
 
 
