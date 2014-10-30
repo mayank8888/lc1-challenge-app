@@ -4,7 +4,11 @@
   angular.module('manageChallenge')
     .controller('ScorecardController', ScorecardController);
 
-    ScorecardController.$inject = ['$location', '$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedScorecard', 'resolvedCurrentChallenge'];
+    //TODO(DG: 10/30/2014): Update jsdoc
+    /**
+     * @name ScorecardController
+     * @ngInject
+     */
     function ScorecardController($location, $scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedScorecard, resolvedCurrentChallenge) {
         //dummy data
         var scoreItems = [
@@ -30,7 +34,7 @@
       vm.scoreItems = scoreItems;
       vm.scorecard = resolvedScorecard;
       vm.challenge = resolvedCurrentChallenge;
-      vm.tcChallengeDetailsURL = tcChallengeDetailsURL;
+      vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
       vm.saveScorecard = saveScorecard;
 
       //user-agent stuff
@@ -68,8 +72,8 @@
       }
       
       //helper functions
-      function tcChallengeDetailsURL(challenge) {
-        return TC_URLS.baseDetailsURL + challenge.id;
+      function tcChallengeDetailsUrl(challenge) {
+        return TC_URLS.baseChallengeDetailsUrl + challenge.id;
       }
 
       function saveScorecard() {

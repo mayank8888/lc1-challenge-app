@@ -9,7 +9,7 @@
           </h3>
           <!-- /* TODO (BG: 10/22/2014): make breadcrumb an Angular component */ -->
           <!--breadcrumb-->
-          <span class="aaf-sa-breadcrumb"><a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.name}} <i class="fa fa-sm fa-external-link-square"></i></a> / Results </span>
+          <span class="aaf-sa-breadcrumb"><a ng-href="{{vm.tcChallengeDetailsUrl(vm.challenge)}}" target="_blank">{{vm.challenge.title}} <i class="fa fa-sm fa-external-link-square"></i></a> / Results </span>
         </div>
     </div>
   </header>
@@ -33,7 +33,7 @@
       </thead>
     
       <tbody data-ng-repeat="result in $data">
-        <tr class="{{checkboxes.items[challenge.id]?'select':''}}" data-ng-class="$odd?'odd':''">
+        <tr data-ng-class="$odd?'odd':''">
           <td>
           &nbsp;
           </td>
@@ -41,12 +41,10 @@
             {{result.place}}
           </td>
           <td class="text-left" data-sortable="'prize'">
-          {{result.prize}}
-          <a href="https://www.topcoder.com/member-profile/{{row.col3}}/" target="_blank">{{row.col3}}</a>
+            {{result.prize}}
           </td>
-          <td class="text-left" data-sortable="'lastUpdatedAt'">
-          
-            <a href="https://www.topcoder.com/member-profile/{{result.submission.submitter.handle}}/" target="_blank">{{result.submission.submitter.handle}}</a>
+          <td class="text-left" data-sortable="'submission.submitter.handle'">
+            <a href="{{vm.tcMemberProfileUrl(result.submission.submitter.handle)}}" target="_blank">{{result.submission.submitter.handle}}</a>
           </td>
           <td data-ng-if="!phone" class="text-left" data-sortable="'score'">
           {{result.score}}

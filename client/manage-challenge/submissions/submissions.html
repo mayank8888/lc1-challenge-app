@@ -14,7 +14,7 @@
           </h3>
           <!-- /* TODO (BG: 10/22/2014): make breadcrumb an Angular component */ -->
           <!--breadcrumb-->
-          <span class="aaf-sa-breadcrumb"><a ng-href="{{vm.tcChallengeDetailsURL(vm.challenge)}}" target="_blank">{{vm.challenge.title}} <i class="fa fa-sm fa-external-link-square"></i></a> / Submissions </span>
+          <span class="aaf-sa-breadcrumb"><a ng-href="{{vm.tcChallengeDetailsUrl(vm.challenge)}}" target="_blank">{{vm.challenge.title}} <i class="fa fa-sm fa-external-link-square"></i></a> / Submissions </span>
         </div>
     </div>
   </header>
@@ -33,7 +33,7 @@
       </tr>
       </thead>
       <tbody data-ng-repeat="scorecard in $data">
-          <tr class="{{checkboxes.items[scorecard.id]?'select':''}}" data-ng-class="$odd?'odd':''">
+          <tr data-ng-class="$odd?'odd':''">
               <td>
                   &nbsp; {{vm.tableParams.total | json}}
               </td>

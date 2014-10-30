@@ -4,12 +4,16 @@
   angular.module('manageChallenge')
     .controller('SubmissionsController', SubmissionsController);
 
-    SubmissionsController.$inject = ['$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedSubmissions', 'resolvedCurrentChallenge'];
+    //TODO(DG: 10/30/2014): Update jsdoc
+    /**
+     * @name SubmissionsController
+     * @ngInject
+     */
     function SubmissionsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedSubmissions, resolvedCurrentChallenge) {
       var vm = this;
       vm.submissions = resolvedSubmissions;
       vm.challenge = resolvedCurrentChallenge;
-      vm.tcChallengeDetailsURL = tcChallengeDetailsURL;
+      vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
 
       //user-agent stuff
       vm.browser = Utils.getBrowser();
@@ -48,8 +52,8 @@
       }
       
       //helper functions
-      function tcChallengeDetailsURL(challenge) {
-        return TC_URLS.baseDetailsURL + challenge.id;
+      function tcChallengeDetailsUrl(challenge) {
+        return TC_URLS.baseChallengeDetailsUrl + challenge.id;
       }
 
     }
