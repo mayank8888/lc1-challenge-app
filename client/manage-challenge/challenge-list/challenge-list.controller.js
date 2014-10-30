@@ -9,7 +9,7 @@
    * @desc 
    * @param {!angular.$http}
    * @param {!angular.$q}
-   * @returns 
+   * @returns
    * @ngInject
    */
   //ChallengeListController.$inject = ['$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedChallenges'];
@@ -49,7 +49,7 @@
       ];
 
       var sort = {updatedAt: 'desc'};
-      Utils.handleTable(vm, $scope, headers, vm.challenges, sort);      
+      Utils.handleTable(vm, $scope, headers, vm.challenges, sort);
     }
 
     //helper functions

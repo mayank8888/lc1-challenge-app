@@ -66,7 +66,7 @@
 
         Utils.handleTable(vm, $scope, headers, vm.scoreItems, sort);
       }
-      
+
       //helper functions
       function tcChallengeDetailsURL(challenge) {
         return TC_URLS.baseDetailsURL + challenge.id;
@@ -79,6 +79,6 @@
       }
 
     }
-    
+
 
 })(window, window.angular);

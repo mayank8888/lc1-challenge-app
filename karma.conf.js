@@ -25,7 +25,7 @@ module.exports = function(config) {
       'challenge/challenge.service.js',
       'aaf/aaf.module.js',
       'aaf/aaf.vars.js',
-      'aaf/utils.service.js',  
+      'aaf/utils.service.js',
       'aaf/layout/header.service.js',
       'aaf/layout/profile.controller.js',
       'aaf/components/checkbox.directive.js',
@@ -46,7 +46,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      
+
     ],
 
 

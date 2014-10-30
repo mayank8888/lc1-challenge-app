@@ -1,0 +1,38 @@
+<section id="section-3" class="requirements" data-ng-style="setSectionMinHeight()" data-ng-controller="RequirementsController">
+  <header>
+    <i></i>
+    <h4>Requirements</h4>
+    <span>WHAT ARE YOUR REQUIREMENTS</span>
+  </header>
+  <!--End .section header-->
+  <div class="content">
+    <form name="requirementForm">
+      <label class="requirement-desc-label">Content</label>
+      <textarea class="requirement-desc" data-maxlength="800" data-ng-model="requirements.content" placeholder="Type your requirement here (maximum 800 characters)"></textarea>
+      <a href="javascript:" data-ng-click="addRequirement()" class="btn blue-btn add-requirement"><i></i>Add Requirement</a>
+    </form>
+    <!--End .form-->
+    
+    <div class="requirement-list">
+      <div class="list-item" data-ng-repeat="requirement in requirements.requirementList">
+        <div class="actions">
+          <a data-ng-show="!requirement.edit" href="javascript:" data-ng-click="saveRequirement(requirement)" class="edit"></a>
+          <a data-ng-show="requirement.edit" href="javascript:" data-ng-click="saveRequirement(requirement)" class="save"></a>
+          <a href="javascript:" data-ng-click="deleteRequirement(requirement)" class="delete"></a>
+        </div>
+        <!--End .actions-->
+
+        <p data-ng-if="!requirement.edit">{{requirement.body}}</p>
+        <div data-ng-if="requirement.edit" class="textarea-cnt">
+          <textarea data-maxlength="800" data-ng-model="requirement.body"></textarea>
+        </div>
+        <!--End .DESC-->
+      </div>
+      <!--End .list-item-->
+
+    </div>
+    <!--End .requirement-list-->
+  </div>
+  <!--End .section content-->
+</section>
+<!--End .section-->

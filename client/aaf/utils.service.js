@@ -10,13 +10,13 @@
    * @desc Utils class for Manage Challenges
    * @param {!angular.$http}
    * @param {!angular.$q}
-   * @returns 
+   * @returns
    * @ngInject
    */
   Utils.$inject = ['$filter', '$http', '$q', '$window', 'ngTableParams', 'TABLE'];
   function Utils($filter, $http, $q, $window, ngTableParams, TABLE) {
     var _challenges;
-    
+
     var serviceAPI = {
       apiCall: apiCall,
       initCase: initCase,
@@ -37,7 +37,7 @@
           return key;
         }
       }
-      return 'unknown';      
+      return 'unknown';
     }
 
 
@@ -66,7 +66,7 @@
 
     function getJsonData(jsonUrl) {
       var deferred = $q.defer();
-      
+
       $http({method: 'GET', url: jsonUrl})
         .success(function (data, status, headers, config) {
           deferred.resolve(data);
@@ -79,7 +79,7 @@
 
     function apiCall(uri) {
       var deferred = $q.defer();
-      
+
       $http({method: 'GET', url: '/api'})
         .success(function (data, status, headers, config) {
           console.log('got this data: ', data.content);
@@ -94,7 +94,7 @@
     function initCase(str) {
       return str.toLowerCase().replace(/(?:^|\s)[a-z]/g, function (m) {
             return m.toUpperCase();
-      });      
+      });
     }
 
   }
