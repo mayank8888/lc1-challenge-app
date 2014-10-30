@@ -53,7 +53,7 @@
       if (_challenges) {
         deferred.resolve(_challenges);
       } else {
-        return Utils.getJsonData('challenge/data/challenges.json');
+        return Utils.getJsonData('appirio_bower_components/challenge/data/challenges.json');
       }
     }
 
@@ -77,7 +77,7 @@
 
     function getScorecards(challengeId) {
       var deferred = $q.defer();
-      Utils.getJsonData('challenge/data/scorecards.json').then(function(scorecards) {
+      Utils.getJsonData('appirio_bower_components/challenge/data/scorecards.json').then(function(scorecards) {
         deferred.resolve(_.where(scorecards, {
           'challengeId': parseInt(challengeId)
         }));
@@ -94,7 +94,7 @@
 
     /* Result APIs */
     function getResults(challengeId) {
-      return Utils.getJsonData('challenge/data/results.json');
+      return Utils.getJsonData('appirio_bower_components/challenge/data/results.json');
     }
 
   }

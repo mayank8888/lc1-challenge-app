@@ -4,19 +4,17 @@
   angular.module('manageChallenge')
     .controller('ChallengeListController', ChallengeListController);
 
+  //TODO(DG: 10/20/2014): Update jsdoc  
   /**
    * @name ChallengeListController
    * @desc 
-   * @param {!angular.$http}
-   * @param {!angular.$q}
-   * @returns
+   * @returns 
    * @ngInject
    */
-  //ChallengeListController.$inject = ['$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedChallenges'];
   function ChallengeListController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallenges) {
     var vm = this;
     vm.challenges = resolvedChallenges;
-    vm.toTCChallengeDetailsURL = toTCChallengeDetailsURL;
+    vm.toTCChallengeDetailsUrl = toTCChallengeDetailsUrl;
     vm.deleteChallenge = deleteChallenge;
 
     //user-agent stuff
@@ -53,8 +51,8 @@
     }
 
     //helper functions
-    function toTCChallengeDetailsURL(challenge) {
-      return TC_URLS.baseDetailsURL + challenge.id;
+    function toTCChallengeDetailsUrl(challenge) {
+      return TC_URLS.baseChallengeDetailsUrl + challenge.id;
     }
 
     function deleteChallenge(challenge) {

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('tc.aaf')
-    .constant("TABLE", {
+    .constant("AAF_TABLE", {
       "defaultRowsPerPage": 10
     });
 

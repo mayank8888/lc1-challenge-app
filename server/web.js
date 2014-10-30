@@ -5,29 +5,40 @@
   var logfmt = require("logfmt");
   var url = require('url');
   var app = express();
+  //var bodyParser = require('body-parser');
+  var passport = require('passport');
 
   var fileOptions = {
-    root: __dirname
+    root: __dirname + '/../client'
   };
+
+  //NOTE: Order of app.use() matters; first one wins
 
   //middleware
   app.use(logfmt.requestLogger());
+  app.use(passport.initialize());
 
-  app.use('/edit', express.static(__dirname + '/client/edit-challenge'));
-  app.use('/manage', express.static(__dirname + '/client/manage-challenge'));
-  app.use('/*/bower_components', express.static(__dirname + '/client/bower_components'));
-  app.use('/*/aaf', express.static(__dirname + '/client/aaf'));
-  app.use('/*/challenge', express.static(__dirname + '/client/challenge'));
+  //TODO: enable auth stuff
+  //Example of a module can apply auth to the endpoint
+  // tc auth stuff
+  var tcAuth = require('./appirio_node_modules/tc-server-auth')(app);
+  app.use('/_api_/*', tcAuth);
+
+  app.use('/*/bower_components', express.static(__dirname + '/../client/bower_components'));
+  app.use('/edit', express.static(__dirname + '/../client/edit-challenge'));
+  app.use('/manage', express.static(__dirname + '/../client/manage-challenge'));
+  app.use('/bower_components', express.static(__dirname + '/../client/bower_components'));
+  app.use('/*/appirio_bower_components', express.static(__dirname + '/../client/appirio_bower_components'));
 
   //server side routes
   //challenge management
   app.get('/manage', function (req, res) {
-    res.sendFile('client/manage-challenge/index.html', fileOptions, handleFileError);
+    res.sendFile('manage-challenge/index.html', fileOptions, handleFileError);
   });
 
   //create/edit challenge
   app.get('/edit', function (req, res) {
-    res.sendFile('client/edit-challenge/public-info.html', fileOptions, handleFileError);
+    res.sendFile('edit-challenge/public-info.html', fileOptions, handleFileError);
   });
 
   //default direct to manage page

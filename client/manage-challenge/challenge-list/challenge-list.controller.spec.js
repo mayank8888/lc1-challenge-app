@@ -62,7 +62,7 @@ describe('Unit: ChallengeListController', function() {
 
   it('should provide the correct url to the challenge details page on the tc site', 
     function() {      
-      expect(ctrl.toTCChallengeDetailsURL(challenges[0])).toEqual(TC_URLS.baseDetailsURL + challenges[0].id);
+      expect(ctrl.toTCChallengeDetailsURL(challenges[0])).toEqual(TC_URLS.baseChallengeDetailsUrl + challenges[0].id);
   });  
 
 })

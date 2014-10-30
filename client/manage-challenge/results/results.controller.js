@@ -4,21 +4,17 @@
   var module = angular.module('manageChallenge')
     .controller('ResultsController', ResultsController);
 
-  //TODO(DG: 10/20/2014): Cleanup params + add jsdoc
+  //TODO(DG: 10/20/2014): Update jsdoc
   /**
    * @name ResultsController
-   * @desc 
-   * @param {!angular.$http}
-   * @param {!angular.$q}
-   * @returns 
    * @ngInject
    */
-  ResultsController.$inject = ['$scope', 'matchmedia', 'ChallengeService', 'Utils', 'TC_URLS', 'resolvedChallengeResults', 'resolvedCurrentChallenge'];
   function ResultsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallengeResults, resolvedCurrentChallenge) {
     var vm = this;
     vm.results = resolvedChallengeResults;
     vm.challenge = resolvedCurrentChallenge;
-    vm.tcChallengeDetailsURL = tcChallengeDetailsURL;
+    vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
+    vm.tcMemberProfileUrl = tcMemberProfileUrl;
 
     //user-agent stuff
     vm.browser = Utils.getBrowser();
@@ -53,8 +49,13 @@
     }
 
     //helper functions
-    function tcChallengeDetailsURL(challenge) {
-      return TC_URLS.baseDetailsURL + challenge.id;
+    function tcChallengeDetailsUrl(challenge) {
+      return TC_URLS.baseChallengeDetailsUrl + challenge.id;
+    }
+
+    function tcMemberProfileUrl(memberHandle) {
+      console.log('memberHandle', memberHandle)
+      return TC_URLS.baseMemberProfileUrl + memberHandle;
     }
 
   }

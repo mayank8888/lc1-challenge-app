@@ -13,8 +13,8 @@
    * @returns
    * @ngInject
    */
-  Utils.$inject = ['$filter', '$http', '$q', '$window', 'ngTableParams', 'TABLE'];
-  function Utils($filter, $http, $q, $window, ngTableParams, TABLE) {
+  Utils.$inject = ['$filter', '$http', '$log', '$q', '$window', 'ngTableParams', 'AAF_TABLE'];
+  function Utils($filter, $http, $log, $q, $window, ngTableParams, AAF_TABLE) {
     var _challenges;
 
     var serviceAPI = {
@@ -44,7 +44,7 @@
     //TODO: remove or replace when we refactor to use ng-grid
     //helper function for configuring ng-tables
     function handleTable(controller, $scope, headers, data, sorting) {
-      var perPage = TABLE.defaultRowsPerPage;
+      var perPage = AAF_TABLE.defaultRowsPerPage;
       var vm = controller;
 
       vm.columnHeaders = headers;
@@ -78,11 +78,10 @@
     }
 
     function apiCall(uri) {
-      var deferred = $q.defer();
-
-      $http({method: 'GET', url: '/api'})
+      var deferred = $q.defer();      
+      $http({method: 'GET', url: uri})
         .success(function (data, status, headers, config) {
-          console.log('got this data: ', data.content);
+          $log.debug('data back from api call: ', data.content);
           deferred.resolve(data.content);
         })
         .error(function (data, status, headers, config) {

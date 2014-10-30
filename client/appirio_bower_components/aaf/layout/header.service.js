@@ -22,7 +22,7 @@
 
 	  function getUserProfile() {
       //TODO: replace w/ real ajax call
-      return Utils.getJsonData('aaf/layout/data/user-profile.json');
+      return Utils.getJsonData('appirio_bower_components/aaf/layout/data/user-profile.json');
     }
   }
 
