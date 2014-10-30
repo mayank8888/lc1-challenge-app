@@ -16,7 +16,7 @@
   app.use('/edit', express.static(__dirname + '/client/edit-challenge'));
   app.use('/manage', express.static(__dirname + '/client/manage-challenge'));
   app.use('/*/bower_components', express.static(__dirname + '/client/bower_components'));
-  app.use('/*/aaf', express.static(__dirname + '/client/aaf'));
+  app.use('/*/appirio_bower_components', express.static(__dirname + '/client/appirio_bower_components'));
   app.use('/*/challenge', express.static(__dirname + '/client/challenge'));
 
   //server side routes

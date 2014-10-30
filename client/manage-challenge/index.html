@@ -18,7 +18,7 @@
     <div class="ui-page ui-animate">
 
       <header class="clearfix">
-        <div data-ng-include="'aaf/layout/header.html'"></div>
+        <div data-ng-include="'appirio_bower_components/aaf/layout/header.html'"></div>
       </header>
 
       <!-- App section (ng-view) -->
@@ -26,7 +26,7 @@
     </div>
     
     <footer>
-      <div data-ng-include="'aaf/layout/footer.html'"></div>  
+      <div data-ng-include="'appirio_bower_components/aaf/layout/footer.html'"></div>  
     </footer>
 
   </div>
@@ -37,6 +37,7 @@
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/lodash/dist/lodash.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
@@ -55,20 +56,22 @@
   <script src="submissions/submissions.controller.js"></script>
 
   <!-- Generic Challenge Stuff -->
-  <script src="challenge/challenge.module.js"></script>
-  <script src="challenge/challenge.service.js"></script>
+  <script src="appirio_bower_components/challenge/challenge.module.js"></script>
+  <script src="appirio_bower_components/challenge/challenge.service.js"></script>
 
-  <!-- AAF Stuff -->
-  <script src="aaf/aaf.module.js"></script>
-  <script src="aaf/aaf.vars.js"></script>
-  <script src="aaf/utils.service.js"></script>  
-  <script src="aaf/layout/header.service.js"></script>
-  <script src="aaf/layout/profile.controller.js"></script>
-  <script src="aaf/components/checkbox.directive.js"></script>
-  <script src="aaf/components/force-click.directive.js"></script>
-  <script src="aaf/components/num-fixed-length.directive.js"></script>
-  <script src="aaf/components/off-click.directive.js"></script>
-  <script src="aaf/components/resize.directive.js"></script>
+  <!-- AAF Stuff -->  
+  <script src="appirio_bower_components/aaf/aaf.module.js"></script>
+  <script src="appirio_bower_components/aaf/aaf.vars.js"></script>
+  <script src="appirio_bower_components/aaf/utils.service.js"></script>  
+  <script src="appirio_bower_components/aaf/layout/header.service.js"></script>
+  <script src="appirio_bower_components/aaf/layout/profile.controller.js"></script>
+  <script src="appirio_bower_components/aaf/ui-components/checkbox.directive.js"></script>
+  <script src="appirio_bower_components/aaf/ui-components/force-click.directive.js"></script>
+  <script src="appirio_bower_components/aaf/ui-components/num-fixed-length.directive.js"></script>
+  <script src="appirio_bower_components/aaf/ui-components/off-click.directive.js"></script>
+  <script src="appirio_bower_components/aaf/ui-components/resize.directive.js"></script>
+
+  <script src="appirio_bower_components/aaf/tc-auth/tc-auth.js"></script>
 
   <!--[if IE 9]>
   <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
