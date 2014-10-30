@@ -80,7 +80,7 @@
     function apiCall(uri) {
       var deferred = $q.defer();
       
-      $http({method: 'GET', url: '/api'})
+      $http({method: 'GET', url: uri})
         .success(function (data, status, headers, config) {
           $log.debug('data back from api call: ', data.content);
           deferred.resolve(data.content);

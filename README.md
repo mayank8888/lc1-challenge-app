@@ -2,13 +2,11 @@
 
 `npm install`
 
-`cd client/edit-challenge && bower install`
-
-`cd ../manage-challenge && bower install`
+`cd client && bower install`
 
 ## Run
 
-`node web.js`
+`node sever/web.js`
 
 
 ## Heroku

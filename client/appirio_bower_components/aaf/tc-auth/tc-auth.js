@@ -22,7 +22,7 @@
   /**
    * @ngInject
    */
-  function LoginHandler($location, $window) {
+  function LoginHandler($location, $log, $window) {
     //TODO(DG: 10/30/2014): fix handling of next
     var next = '/';
     var qs = $location.search();
@@ -53,7 +53,7 @@
         //1. browser session storage 
         //2. topcoder cookie (tcjwt)
         var token = $window.sessionStorage.token || $cookies.tcjwt;
-        $log.debug('token: ' + token);
+        //$log.debug('token: ' + token);
         if (token) {
           config.headers.Authorization = 'Bearer ' + token;
         }
