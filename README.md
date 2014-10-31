@@ -2,7 +2,9 @@
 
 `npm install`
 
-`cd client && bower install`
+~~`cd client && bower install`~~
+
+>npm install will now call postinstall script which will run bower install 
 
 ## Run
 
