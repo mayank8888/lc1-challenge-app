@@ -29,3 +29,6 @@ add buildpack for node and grunt
  you must supply enviromental varaibles for both  `TC_AUTH0_CLIENT` and `TC_AUTH0_SECRET` you can set them to any value for the time being until we have the config dir set up
  ```export TC_AUTH0_CLIENT=foo```
  ```export TC_AUTH0_SECRET=bar```
+
+
+ > grunt has been added to the app so you can now start it with `grunt` and nodemon will watch for changes in *.js or *.html files and restart if they change
