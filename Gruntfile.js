@@ -1,6 +1,7 @@
 'use strict';
 
 
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -24,8 +25,18 @@ module.exports = function(grunt) {
       dist: {
 
       }
-    }
+    },
 
+    nodemon: {
+      dev: {
+        script: 'server/web.js',
+        ignore: ['node_modules/**'],
+          ext: 'js,html',
+          nodeArgs: ['--debug'],
+          delayTime: 1,
+          cwd: __dirname
+        }
+      }
 
   });
 
@@ -35,9 +46,7 @@ module.exports = function(grunt) {
 
   //grunt.registerTask('default', ['swagger-js-codegen']);
 
-  grunt.registerTask('default', function() {
-
-  });
+  grunt.registerTask('default', ['nodemon']);
 
 
 

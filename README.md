@@ -23,3 +23,9 @@ add buildpack for node and grunt
 ```
 2.  Create Grunt file
 3. run `grunt swagger-clients`
+
+
+## tc-auth
+ you must supply enviromental varaibles for both  `TC_AUTH0_CLIENT` and `TC_AUTH0_SECRET` you can set them to any value for the time being until we have the config dir set up
+ ```export TC_AUTH0_CLIENT=foo```
+ ```export TC_AUTH0_SECRET=bar```
