@@ -4,11 +4,13 @@
 
 ~~`cd client && bower install`~~
 
->npm install will now call postinstall script which will run bower install 
+>npm install will now call postinstall script which will run bower install
+
+start with `grunt` or `node server/web.js`
 
 ## Run
 
-`node sever/web.js`
+start with `grunt` or `node server/web.js`
 
 ## Heroku
 add buildpack for node and grunt
