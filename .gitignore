@@ -26,10 +26,12 @@ node_modules
 client/**/bower_components/
 bower_components/
 
-
-# local env
+# Local env
 config/local.yaml
 config/local-*.yaml
 
-# misc files
+# Misc files
 .DS_Store
+
+# Upload dir
+upload
