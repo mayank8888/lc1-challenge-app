@@ -1,0 +1,50 @@
+/* Advance Search */
+.modal-advance-search .modal-dialog {
+  width: 300px;
+}
+.modal-advance-search .modal-content {
+  border-radius: 0;
+}
+.modal-advance-search .form-group {
+  border-top: #fff solid 1px;
+  margin: 0;
+  padding: 7px 0;
+}
+.modal-advance-search .form-group:before,
+.modal-advance-search .form-group:after {
+  clear: both;
+  display: table;
+  content: '';
+}
+.modal-advance-search .form-group label {
+  color: #455560;
+  float: left;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 32px;
+  overflow: hidden;
+  padding-left: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px;
+}
+.modal-advance-search .form-group .form-control {
+  width: 62%;
+}
+.modal-advance-search .form-group select {
+  border: #ccc solid 1px;
+  border-radius: 4px;
+  height: 32px;
+  line-height: 32px;
+  padding: 5px 6px;
+  width: 62%;
+}
+.modal-advance-search .form-group .switch {
+  float: right;
+  margin-right: 12px;
+}
+.modal-advance-search .btn-primary {
+  height: 36px;
+  line-height: 22px;
+  width: 147px;
+}

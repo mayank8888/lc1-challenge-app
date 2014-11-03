@@ -33,3 +33,7 @@ config/local-*.yaml
 
 # misc files
 .DS_Store
+
+# Codekit files (https://incident57.com/codekit/)
+client/manage-challenge/config.codekit
+config.codekit

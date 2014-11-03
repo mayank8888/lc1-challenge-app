@@ -1,0 +1,9 @@
+/* Footer */
+footer {
+  background-color: #455560;
+}
+footer p {
+  color: rgba(255, 255, 255, 0.6);
+  padding: 21px 0;
+  text-align: center;
+}

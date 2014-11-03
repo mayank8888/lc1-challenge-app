@@ -1,0 +1,50 @@
+/* Checkbox */
+.switch {
+	background-color: #b7b7b7;
+	border-radius: 15px;
+	display: block;
+	height: 30px;
+	position: relative;
+	width: 50px;
+	}
+
+.switch.checked {
+	background-color: #f79325;
+	}
+
+.switch input {
+	cursor: pointer;
+	height: 30px;
+	left: 0;
+	margin: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 50px;
+	z-index: 2;
+	}
+
+.toggle {
+	background-color: #ffffff;
+	border-radius: 50%;
+	box-shadow: rgba(0,0,0,.29) 0 1px 2px 0;
+	height: 28px;
+	left: 0;
+	position: absolute;
+	top: 1px;
+	-webkit-transition: left .2s ease;
+	-moz-transition: left .2s ease;
+	-ms-transition: left .2s ease;
+	-o-transition: left .2s ease;
+	transition: left .2s ease;
+	width: 28px;
+	z-index: 1;
+	}
+
+.switch input:checked~.toggle {
+	left: 21px;
+	}
+
+.switch input:not(:checked)~.toggle {
+	left: 1px;
+	}

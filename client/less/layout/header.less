@@ -1,0 +1,466 @@
+/* Header */
+header {
+	position: absolute;
+	width: 100%;
+    z-index: 10;
+	}
+
+	header .ui-navbar {
+		background-color: @brand-background;
+		}
+
+	header .ui-navbar .ui-container {
+		z-index: 1;
+		}
+
+	header .logo {
+		background-image: url(../img/tablet/logo.svg);
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		float: left;
+		height: 30px;
+		margin-top: 9px;
+		margin-left: 10px;
+		width: 180px;
+		}
+
+		/* Search */
+		header .well-search {
+			display: none;
+			}
+
+		/* Nav */
+		header nav {
+			float: left;
+			}
+
+			header nav li {
+				border-left: #e1e1e1 solid 1px;
+				float: left;
+				}
+
+			header nav .icon {
+				display: block;
+				outline: none;
+				height: 42px;
+				margin: 0 -1px;
+				position: relative;
+				width: 45px;
+				}
+
+			header nav .icon:last-child {
+				margin-right: 0;
+				}
+
+			header nav li.active .icon {
+				background-color: rgba(52,153,203,1);
+				box-shadow: none;
+				}
+
+			header nav .icon:before {
+				background-image: url(../img/mobile/icons.png);
+				display: block;
+				position: absolute;
+				content: '';
+				}
+
+			header nav .icon:hover:before {
+				opacity: .7;
+				}
+
+			header nav li.active .icon:hover:before {
+				opacity: 1;
+				}
+
+			/* Profile */
+			header nav .icon-profile:before {
+				background-position: 0 -30px;
+				top: 8px;
+				left: 9px;
+				height: 27px;
+				width: 27px;
+				}
+
+			header nav li.active .icon-profile:before {
+				background-position: -40px -30px;
+				}
+
+			/* Notification */
+			header nav .icon-notifications:before {
+				background-position: 0 -70px;
+				margin: 10px 0 0 10px;
+				height: 23px;
+				width: 21px;
+				}
+
+			header nav  li.active .icon-notifications:before {
+				background-position: -40px -70px;
+				}
+
+			/* Search */
+			header nav .icon-search:before {
+				background-position: 0 0;
+				margin: 11px 0 0 12px;
+				height: 21px;
+				width: 21px;
+				}
+
+			header nav  li.active .icon-search:before {
+				background-position: -40px 0;
+				}
+
+			/* Applications */
+			header nav .icon-applications:before {
+				background-position: 0 -110px;
+				margin: 11px 0 0 12px;
+				height: 19px;
+				width: 19px;
+				}
+
+			header nav  li.active .icon-applications:before {
+				background-position: -40px -110px;
+				}
+
+			/* Badge */
+			header nav .badge {
+				display: block;
+				font-size: 12px;
+				font-weight: 500;
+				padding: 1px;
+				position: absolute;
+				top: 8px;
+				right: 3px;
+				}
+
+			header nav .badge .badge-inner {
+				background-color: #ee2b46;
+				border-radius: 50%;
+				display: block;
+				font-family: Arial, Helvetica, sans-serif;
+				height: 18px;
+				line-height: 18px;
+				padding: 0 2px;
+				}
+
+			header nav .active .badge {
+				border-color: #3499cb;
+				}
+
+	/* Header Action */
+	header .header-action {
+		background-color: #455560;
+		}
+
+	header .header-action:before,
+	header .header-action:after {
+		clear: both;
+		display: table;
+		content: '';
+		}
+
+		/* Sub Applications */
+		header .header-action .icon-hamburger {
+			border-right: rgba(255,255,255,.15) solid 1px;
+			float: left;
+			height: 38px;
+			margin-right: 9px;
+			position: relative;
+			width: 41px;
+			}
+
+		header .header-action .icon-hamburger:before {
+			background-image: url(../img/mobile/icons.png);
+			background-position: -80px 0;
+			display: block;
+			height: 15px;
+			position: absolute;
+			top: 11px;
+			left: 10px;
+			width: 19px;
+			content: '';
+			}
+
+		header .header-action .icon-hamburger:hover:before {
+			opacity: .8;
+			}
+
+		header .header-action .icon-hamburger.active:before {
+			background-position: -120px 0;
+			}
+
+		header .header-action h3 {
+			color: #e1e1e1;
+			font-size: 18px;
+			font-weight: normal;
+			line-height: 38px;
+			white-space: nowrap;
+			}
+
+		/* Settings */
+		header .icon-settings {
+			border-left: rgba(255,255,255,.15) solid 1px;
+			height: 38px;
+			position: relative;
+			width: 45px;
+			}
+
+		header .icon-settings:before {
+			background-image: url(../img/mobile/icons.png);
+			background-position: 0 -150px;
+			display: block;
+			height: 23px;
+			position: absolute;
+			top: 7px;
+			left: 11px;
+			width: 23px;
+			content: '';
+			}
+
+		header .icon-settings.active:before {
+			background-position: -40px -150px;
+			}
+
+		header .icon-settings:hover:before {
+			opacity: .8;
+			}
+
+@media (min-width: 768px) {
+
+	header .logo {
+		background-image: url(../img/tablet/logo.svg);
+		background-position: 0 12px;
+		background-repeat: no-repeat;		
+		height: 77px;
+		margin: 0 0 0 30px;
+		width: 341px;
+		}
+
+	/* Search */
+	header .well-search {
+		display: block;
+		float: left;
+		}
+
+		header .well-search .form-group {
+			background-color: #f0f5f9;
+			border: #a4c2de solid 1px;
+			border-radius: 6px;
+			float: left;
+			margin: 21px 14px 0 0;
+			position: relative;
+			width: 209px;
+			}
+
+		header .well-search input {
+			background-color: transparent;
+			border-width: 0;
+			height: 34px;
+			line-height: 20px;
+			margin: 0 -1px;
+			padding: 6px 10px;
+			padding-right: 34px;
+			}
+
+		header .well-search input.placeholder  {
+			color: rgba(69,85,96,.5);
+			}
+
+		header .well-search .icon-search {
+			height: 36px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 26px;
+			}
+
+		header .well-search .icon-search:after {
+			background-image: url(../img/desktop/icons.png);
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			display: block;
+			margin-top: 9px;
+			margin-right: 9px;
+			height: 19px;
+			width: 19px;
+			content: '';
+			}
+
+		header .well-search .icon-search:hover:after {
+			opacity: .7;
+			}
+
+		header .well-search .advance-search {
+			float: left;
+			font-weight: 500;
+			line-height: 36px;
+			margin: 21px 16px 0 0;
+			}
+
+	/* Nav */
+	header nav li.mobile-search {
+		display: none;
+		}
+
+		header nav li.app-selector {
+			display: none;
+		}
+
+		header nav .icon {
+			height: 77px;
+			width: 75px;
+			}
+
+		header nav li:last-child .icon {
+			border-right: #e1e1e1 solid 1px;
+			}
+
+		header nav .icon:before {
+			background-image: url(../img/tablet/icons.png);
+			}
+
+		/* Profile */
+		header nav .icon-profile:before {
+			background-position: 0 -30px;
+			top: 23px;
+			left: 20px;
+			height: 34px;
+			width: 34px;
+			}
+
+		header nav li.active .icon-profile:before {
+			background-position: -40px -30px;
+			}
+
+		/* Notification */
+		header nav .icon-notifications:before {
+			background-position: 0 -80px;
+			margin: 26px 0 0 21px;
+			height: 29px;
+			width: 26px;
+			}
+
+		header nav li.active .icon-notifications:before {
+			background-position: -40px -80px;
+			}
+
+		/* Applications */
+		header nav .icon-applications:before {
+			background-position: 0 -120px;
+			margin: 26px 0 0 25px;
+			height: 25px;
+			width: 25px;
+			}
+
+		header nav li.active .icon-applications:before {
+			background-position: -40px -120px;
+			}
+
+		/* Badge */
+		header nav .badge {
+			font-size: 15.27px;
+			top: 22px;
+			right: 12px;
+			}
+
+		header nav .badge .badge-inner {
+			height: 24px;
+			line-height: 24px;
+			padding: 0 4px;
+			}
+
+		/* Sub Applications */
+		header .header-action .icon-hamburger {
+			border-right: 0;
+			height: 52px;
+			margin: 0;
+			width: 70px;
+			}
+
+		header .header-action .icon-hamburger:before {
+			background-image: url(../img/tablet/icons.png);
+			background-position: -40px 0;
+			height: 25px;
+			top: 14px;
+			left: 20px;
+			width: 32px;
+			}
+
+		header .header-action .icon-hamburger.active:before {
+			background-position: -80px 0;
+			}
+
+		header .header-action h3 {
+			font-size: 22px;
+			line-height: 53px;
+			}
+
+		/* Settings */
+		header .icon-settings {
+			border-left: 0;
+			height: 52px;
+			margin-right: 20px;
+			width: 31px;
+			}
+
+		header .icon-settings:before {
+			background-image: url(../img/desktop/icons.png);
+			background-position: 0 -160px;
+			left: 0;
+			top: 13px;
+			height: 30px;
+			width: 31px;
+			}
+
+		header .icon-settings.active:before {
+			background-position: -40px -160px;
+			}
+}
+
+@media (min-width: 1024px) {
+	header .well-search .form-group {
+		width: 295px;
+		}
+
+	header .logo  {
+		margin-left: 0;
+		}
+
+	header .header-action .icon-hamburger {
+		width: 46px;
+		}
+
+	header .header-action .icon-hamburger:before {
+		left: 0;
+		}
+
+	header .icon-settings {
+		margin-right: 0;
+		}
+
+	header nav li:last-child .icon {
+		border-right: #e1e1e1 solid 1px;
+		}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+	header .logo  {
+		margin-left: 20px;
+		}
+
+	header .header-action .icon-hamburger {
+		width: 70px;
+		}
+
+	header .header-action .icon-hamburger:before {
+		left: 20px;
+		}
+
+	header .icon-settings {
+		margin-right: 20px;
+		}
+
+	header nav li:last-child .icon {
+		border-right: 0;
+		}
+}
