@@ -12,12 +12,12 @@
 	CreateChallengeController.$inject = ['$scope', '$timeout', '$filter', '$state', 'ChallengeService', 'challenge'];
 
 	function CreateChallengeController($scope, $timeout, $filter, $state, ChallengeService, challenge) {
-    
+
     $scope.challenge = challenge;
     $scope.publicBrowsing = {
       complete: false
     }
-    
+
     /*save new challenge*/
     if ($scope.challenge && !$scope.challenge.id) {
       ChallengeService.createChallenge($scope.challenge).then(function(data) {
@@ -95,6 +95,7 @@
             name: 'tagNames',
             displayKey: 'name',
             valueKey: 'name',
+            freeInput: false,
             source: tagNames.ttAdapter()
           }
         });
@@ -314,7 +315,7 @@
     if ($scope.challenge.id) {
       getPrizes();
     }
-    
+
     /*set Place prize*/
     $scope.setPlacePrize = function(place, index) {
       // only last one can be activated
