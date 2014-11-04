@@ -26,6 +26,9 @@
     "restangular": "~1.4.0",
     "angular-ui-router": "~0.2.11",
     "moment": "~2.8.3",
-    "fontawesome":"~4.2"
+    "fontawesome": "~4.2"
+  },
+  "resolutions": {
+    "jquery": "1.11.1"
   }
 }
