@@ -1147,3 +1147,38 @@ footer {
           .main section .content .customer-account-holder .ui-autocomplete > li.ui-state-focus{
             background: #fcd4a8;
           }
+
+.bootstrap-tagsinput{
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  display: block;
+  font-size: 14px;
+  padding: 0 10px 2px 10px;
+}
+  .main section .content .bootstrap-tagsinput input.tt-input{
+    border: none;
+  }
+  .bootstrap-tagsinput .tt-dropdown-menu{
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background: #ffffff;
+    width: 250px;
+    padding: 10px 10px;
+  }
+  .bootstrap-tagsinput span.tag span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+  }
+  .bootstrap-tagsinput span.tag span:after{
+    display: inline-block;
+    content: 'X';
+    margin-left: 4px;
+    width: 10px;
+    height: 10px;
+  }
+  .bootstrap-tagsinput .label-info{
+    background-color: #dcdcdc;
+    color: #455560;
+  }
