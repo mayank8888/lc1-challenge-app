@@ -22,15 +22,13 @@ module.exports.handleUpload = function(req, res, next) {
     if (err) {
       routeHelper.addError(req, err);
     } else {
-      var file = {
-        id: req.params.challengeId   // all files have the id that's same as challenge.id in json file.
-      };
+      var file = {};
       // add field parameters
       Object.keys(fields).forEach(function(name) {
         file[name] = fields[name][0];
       });
 
-      var receivedFile = files.file[0];  // assume only one file
+      var receivedFile = files.files[0];  // assume only one file
       var fileName = receivedFile.originalFilename;
       var targetDirectory = uploadDirectory + '/' + 'challenges' + '/' + req.params.challengeId;
       var targetPath = targetDirectory + '/' + fileName;
@@ -39,7 +37,7 @@ module.exports.handleUpload = function(req, res, next) {
         filePath : targetPath,
         fileName : fileName,
         size : receivedFile.size,
-        storageType : 'local'     // local by default
+        storageLocation : 'local'     // local by default
       });
 
       // move file, overwrite if exists
@@ -50,9 +48,8 @@ module.exports.handleUpload = function(req, res, next) {
         }
       });
 
-      // save file data to req.body and pass it to next handler
-      req.body = file;
-      
+      // send back file data to next handler
+      req.data = file;
     }
     next();
   });

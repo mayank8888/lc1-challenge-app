@@ -4,6 +4,8 @@
   var express = require("express");
   var logfmt = require("logfmt");
   var url = require('url');
+  var config = require("../config/config");
+
   var app = express();
   //var bodyParser = require('body-parser');
   var passport = require('passport');
@@ -51,10 +53,10 @@
   app.use(bodyParser.json());
 
   var challenges = require('./routes/challenges');
-  var tags = require('./routes/tags');
+  // var tags = require('./routes/tags');
   var accounts = require('./routes/accounts');
   app.use('/challenges', challenges);
-  app.use('/tags', tags);
+  // app.use('/tags', tags);
   app.use('/accounts', accounts);
 
   //server config
