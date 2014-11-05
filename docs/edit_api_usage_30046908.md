@@ -22,9 +22,8 @@ The configurations are set up in `config/config.js`.
 
 Create `upload` folder in the project root folder where files are uploaded to. The default path for the uploaded file is `upload/challenges/:challengeId/filename`.
 
-Copy `env_sample` to `.env`, and export the environment variables:
+Copy `env_sample` to `.env`, the .`env` file is required to start the application.
 
-	$ export .env
 
 ## Local Deployment
 
@@ -97,6 +96,33 @@ Changed all existing challenges routes to use new Swagger client, and created th
 
 * Recommend to use `node-env-file` over `config`, the `node-env-file` can handle environment variables.
 
+
 ## Git file changes
 
-
+	modified:   .gitignore
+	deleted:    client/edit-challenge/data/challenges.json
+	deleted:    client/edit-challenge/data/files.json
+	deleted:    client/edit-challenge/data/prizes.json
+	deleted:    client/edit-challenge/data/requirements.json
+	deleted:    client/edit-challenge/data/tags.json
+	modified:   client/edit-challenge/js/app.js
+	modified:   client/edit-challenge/js/controllers/challenge-file-upload-controller.js
+	modified:   client/edit-challenge/js/controllers/create-challenge-controller.js
+	modified:   client/edit-challenge/js/controllers/requirements-controller.js
+	modified:   client/edit-challenge/js/services/challenge-service.js
+	modified:   client/edit-challenge/public-info.html
+	modified:   client/edit-challenge/templates/challenge-edit.html
+	modified:   client/edit-challenge/templates/prizes.html
+	modified:   client/edit-challenge/templates/requirement.html
+	new file:   config/config.js
+	new file:   docs/edit_api_usage_30046908.md
+	new file:   env_sample
+	modified:   package.json
+	modified:   server/appirio_node_modules/tc-server-auth/index.js
+	modified:   server/challenge-consumer.js
+	modified:   server/routes/challenges.js
+	new file:   server/routes/clientHelper.js
+	modified:   server/routes/localUploadMiddleware.js
+	modified:   server/routes/routeHelper.js
+	deleted:    server/routes/tags.js
+	modified:   server/web.js
