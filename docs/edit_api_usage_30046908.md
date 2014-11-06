@@ -42,7 +42,8 @@ Run the application:
 
 The application starts at port 8000 by default, visit `http://localhost:8000`.
 
-If there is any missing javascript or css file, please run `bower install` at the `client` folder.
+Sometimes `bower install` doesn't install all the required modules. If the browse complains the missing javascipt or css, please run `bower install` at the `client` folder. Also sometimes the `angular-placeholder-tai` is not installed correctly. If that happens, please remove 
+`client/bower_components/angular-placeholder-tai` and run `bower install` again at the `client` folder. I included `angular-placeholder-tai.zip` just in case. If the bower install doesn't work, then unzip it under `client/bower_components` folder.
 
 	$ bower install
 
