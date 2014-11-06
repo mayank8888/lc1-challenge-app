@@ -5,8 +5,9 @@
   var logfmt = require("logfmt");
   var url = require('url');
   var app = express();
-  //var bodyParser = require('body-parser');
   var passport = require('passport');
+  // tc auth stuff
+  var tcAuth = require('./appirio_node_modules/tc-server-auth')(app);
 
   var fileOptions = {
     root: __dirname + '/../client'
@@ -17,12 +18,6 @@
   //middleware
   app.use(logfmt.requestLogger());
   app.use(passport.initialize());
-
-  //TODO: enable auth stuff
-  //Example of a module can apply auth to the endpoint
-  // tc auth stuff
-  var tcAuth = require('./appirio_node_modules/tc-server-auth')(app);
-  app.use('/_api_/*', tcAuth);
 
   app.use('/*/bower_components', express.static(__dirname + '/../client/bower_components'));
   app.use('/edit', express.static(__dirname + '/../client/edit-challenge'));

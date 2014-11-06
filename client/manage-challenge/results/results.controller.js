@@ -11,7 +11,8 @@
    */
   function ResultsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallengeResults, resolvedCurrentChallenge) {
     var vm = this;
-    vm.results = resolvedChallengeResults;
+    vm.results = resolvedChallengeResults.content;
+    vm.totalCount = resolvedChallengeResults.metadata.totalCount;
     vm.challenge = resolvedCurrentChallenge;
     vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
     vm.tcMemberProfileUrl = tcMemberProfileUrl;
@@ -45,7 +46,7 @@
       ];
 
       var sort = {place: 'asc'};
-      Utils.handleTable(vm, $scope, headers, vm.results, sort);
+      Utils.handleTable(vm, $scope, headers, vm.results, vm.totalCount, sort);
     }
 
     //helper functions

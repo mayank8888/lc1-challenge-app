@@ -4,16 +4,17 @@
   angular.module('manageChallenge')
     .controller('ChallengeListController', ChallengeListController);
 
-  //TODO(DG: 10/20/2014): Update jsdoc  
+  //TODO(DG: 10/20/2014): Update jsdoc
   /**
    * @name ChallengeListController
-   * @desc 
-   * @returns 
+   * @desc
+   * @returns
    * @ngInject
    */
   function ChallengeListController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallenges) {
     var vm = this;
-    vm.challenges = resolvedChallenges;
+    vm.challenges = resolvedChallenges.content;
+    vm.totalCount = resolvedChallenges.metadata.totalCount;
     vm.toTCChallengeDetailsUrl = toTCChallengeDetailsUrl;
     vm.deleteChallenge = deleteChallenge;
 
@@ -34,7 +35,7 @@
         },
         {
           "colName": "Account",
-          "col": "account.title"
+          "col": "account"
         },
         {
           "colName": "Last Updated",
@@ -47,7 +48,7 @@
       ];
 
       var sort = {updatedAt: 'desc'};
-      Utils.handleTable(vm, $scope, headers, vm.challenges, sort);
+      Utils.handleTable(vm, $scope, headers, vm.challenges, vm.totalCount, sort);
     }
 
     //helper functions
@@ -56,7 +57,10 @@
     }
 
     function deleteChallenge(challenge) {
-      ChallengeService.deleteChallenge(challenge.id);
+      ChallengeService.deleteChallenge(challenge.id).then(function(res) {
+        console.log('TODO: Implement deleted challenge...', res);
+      });
+
     }
 
   }

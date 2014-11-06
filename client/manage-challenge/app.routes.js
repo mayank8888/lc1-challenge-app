@@ -37,12 +37,12 @@
         controllerAs: "vm",
         templateUrl: "submissions/submissions.html",
         resolve: {
-          resolvedSubmissions: function getScorecards($route, ChallengeService) {
-            return ChallengeService.getScorecards($route.current.params.challengeId);
+          submissionData: function getSubmissionData($route, ChallengeService) {
+            return ChallengeService.getSubmissions($route.current.params.challengeId);
           },
           resolvedCurrentChallenge: function getChallenge($route, ChallengeService) {
             return ChallengeService.getChallenge($route.current.params.challengeId);
-          }
+          }                    
         }          
       })
 

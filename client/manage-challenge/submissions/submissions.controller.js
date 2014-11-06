@@ -9,9 +9,11 @@
      * @name SubmissionsController
      * @ngInject
      */
-    function SubmissionsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedSubmissions, resolvedCurrentChallenge) {
+    function SubmissionsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, submissionData, resolvedCurrentChallenge) {
+      
       var vm = this;
-      vm.submissions = resolvedSubmissions;
+      vm.submissions = submissionData.content;
+      vm.totalCount = submissionData.metadata.totalCount;
       vm.challenge = resolvedCurrentChallenge;
       vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
 
@@ -24,23 +26,23 @@
       function activate() {
 
         //table stuff
-        var sort = {sequence: 'asc'};
+        var sort = {id: 'asc'}; //sequence
         var headers = [
           {
             "colName": "Id",
-            "col": "sequence"
+            "col": "id" //TODO(DG: 11/3/2014): want to use 'sequence' instead
           },
           {
             "colName": "Date Submitted",
-            "col": "submittedAt"
+            "col": "updatedAt" //submittedAt
           },
           {
             "colName": "Reviewer",
-            "col": "reviewer"
+            "col": "updatedBy" //reviewer
           },
           {
             "colName": "Score",
-            "col": "score"
+            "col": "scoreSum" //score
           },
           {
             "colName": "Status",
@@ -48,7 +50,9 @@
           }
         ];
 
-        Utils.handleTable(vm, $scope, headers, vm.submissions, sort);
+
+        Utils.handleTable(vm, $scope, headers, vm.submissions, vm.totalCount, sort);
+
       }
       
       //helper functions
