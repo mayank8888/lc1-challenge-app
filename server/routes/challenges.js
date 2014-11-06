@@ -7,8 +7,25 @@ var express = require('express');
 var router = express.Router();
 var routeHelper = require('./routeHelper');
 var controllerHelper = require('./controllerHelper');
-var localFileUploader = require('./localUploadMiddleware');
+var config = require('config');
+/**
+ * Upload middleware
+ * @type {Object}
+ */
+var uploadMiddleware;
 
+/**
+ * Initializing upload middleware based on configuration for storage provider
+ */
+var storageProviders = config.storageProviders,
+  providerName = config.uploads.storageProvider;
+
+if(storageProviders.hasOwnProperty(providerName)) {
+  var providerConfig = storageProviders[providerName];
+  uploadMiddleware = require(config.root + '/' + providerConfig.path)(providerConfig.options, config);
+} else {
+  throw new Error(providerName + 'is not configured in Storage Providers');
+}
 
 // mock challenge controller
 var challengeJsonFile = routeHelper.EDIT_DATA_PATH+'/challenges.json';
@@ -43,7 +60,7 @@ var fileController = controllerHelper.buildController('File', 'Challenge', fileJ
 
 router.route('/:challengeId/files')
   .get(fileController.all, routeHelper.renderJson)
-  .post(localFileUploader.handleUpload, fileController.create, routeHelper.renderJson);
+  .post(uploadMiddleware.handleUpload, fileController.create, routeHelper.renderJson);
 router.route('/:challengeId/files/:fileId')
   .get(fileController.get, routeHelper.renderJson)
   .put(fileController.update, routeHelper.renderJson)
