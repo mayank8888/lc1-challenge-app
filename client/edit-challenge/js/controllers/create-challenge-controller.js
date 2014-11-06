@@ -12,12 +12,12 @@
 	CreateChallengeController.$inject = ['$scope', '$timeout', '$filter', '$state', 'ChallengeService', 'challenge'];
 
 	function CreateChallengeController($scope, $timeout, $filter, $state, ChallengeService, challenge) {
-    
+
     $scope.challenge = challenge;
     $scope.publicBrowsing = {
       complete: false
     }
-    
+
     /*save new challenge*/
     if ($scope.challenge && !$scope.challenge.id) {
       ChallengeService.createChallenge($scope.challenge).then(function(data) {
@@ -79,11 +79,29 @@
       });
     };
 
-    /*get all tags*/
-    $scope.allTags = [];
+    /*get all tags and initialize the tags inpu and initialize the tags input*/
+    $scope.tags = '';
+    var tagNames = null;
     function getAllTags() {
       ChallengeService.getAllTags().then(function(data) {
-        $scope.allTags = data;
+        tagNames = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          local: data
+        });
+        tagNames.initialize();
+        $('input.tags-input').tagsinput({
+          typeaheadjs: {
+            name: 'tagNames',
+            displayKey: 'name',
+            valueKey: 'name',
+            freeInput: false,
+            source: tagNames.ttAdapter()
+          }
+        });
+        $scope.$watch('tags', function(){
+          $scope.challenge.tags=$("input.tags-input").tagsinput('items');
+        });
       });
     };
     getAllTags();
@@ -297,7 +315,7 @@
     if ($scope.challenge.id) {
       getPrizes();
     }
-    
+
     /*set Place prize*/
     $scope.setPlacePrize = function(place, index) {
       // only last one can be activated
