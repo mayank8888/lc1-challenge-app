@@ -10,14 +10,13 @@
    * @desc General Angular Challenge Service
    * @param {!angular.$http}
    * @param {!angular.$q}
-   * @returns 
+   * @returns
    * @ngInject
    */
-  //ChallengeService.$inject = ['$http', '$q', 'Utils'];
   function ChallengeService($http, $q, Utils, TC_DATA_SOURCE) {
     var _challenges;
     var _useLocal = TC_DATA_SOURCE.challenge.useLocal || false;
-    
+
     var serviceAPI = {
       //TEMP
       getSubmissions: getSubmissions,
@@ -30,7 +29,7 @@
       //Scorecard APIs
       getScorecard: getScorecard,
       getScorecards: getScorecards,
-      createScorecard: createScorecard, 
+      createScorecard: createScorecard,
       updateScorecardItem: updateScorecardItem,
 
       //Result APIs
@@ -70,7 +69,7 @@
       });
 
       return deferred.promise;
-    }   
+    }
 
 
     function getChallenges() {
@@ -101,7 +100,7 @@
         }
         return deferred.promise;
 
-    } 
+    }
 
     /* Scorecard APIs */
     function getScorecard(challengeId, sequence) {
@@ -117,16 +116,17 @@
     }
 
     function getScorecards(challengeId) {
-      // var deferred = $q.defer();
-      // Utils.getJsonData('appirio_bower_components/challenge/data/scorecards.json').then(function(scorecards) {
-      //   deferred.resolve(_.where(scorecards, {
-      //     'challengeId': parseInt(challengeId)
-      //   }));
-      // });
-
-      // return deferred.promise;
-      return Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards');
-
+      if (_useLocal) {
+        var deferred = $q.defer();
+        Utils.getJsonData('appirio_bower_components/challenge/data/scorecards.json').then(function(scorecards) {
+          deferred.resolve(_.where(scorecards, {
+            'challengeId': parseInt(challengeId)
+          }));
+        });
+        return deferred.promise;
+      } else {
+        return Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards');
+      }
     }
 
     function deleteScorecard() {
@@ -156,7 +156,7 @@
     function updateScorecard(challengeId, submissionId, scorecardId) {
       //TODO: Implement
       throw new Error('Not Implemented');
-    }    
+    }
 
     function updateScorecardItem(challengeId, submissionId, scorecardId, requirementId, scorecardItemId) {
       //TODO: Implement
@@ -174,11 +174,12 @@
       console.log("DOING UPDATE2: ", body);
       //return Utils.apiUpdate('/_api_/challenges/' + challengeId);
       return Utils.apiUpdate('/_api_/challenges/' + challengeId + '/scorecards/' + scorecardId + '/scorecardItems/' + scorecardItemId, body);
-      
-    }    
+
+    }
 
     /* Result APIs */
     function getResults(challengeId) {
+      //select * from scorecards where place is not null and pay = true and "challengeId" = {}
       return Utils.getJsonData('appirio_bower_components/challenge/data/results.json');
     }
 
