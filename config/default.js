@@ -1,10 +1,83 @@
 'use strict';
 
+var path = require('path'),
+  // rootPath shouldn't end with forward slash
+  rootPath = path.normalize(__dirname + '/..');
+
 module.exports = {
+  root: rootPath,
   challengeServiceURI: 'http://lc1-challenge-service.herokuapp.com/',
   auth0: {
     Domain: process.env.TC_AUTH0_DOMAIN || 'serenity-tc.auth0.com',
     Client: process.env.TC_AUTH0_CLIENT || 'foo',
     Secret: process.env.TC_AUTH0_SECRET || 'bar'
+  },
+  /**
+   * Uploads configuration
+   * @type {Object}
+   */
+  uploads : {
+    /**
+     * Should be configured in storageProviders
+     * @type {String}
+     */
+    storageProvider : 'local'
+  },
+  /**
+   * Storage providers can be configured here
+   * A storage provider should support two operations
+   * store and delete
+   * @type {Object}
+   */
+  storageProviders : {
+    local: {
+      /**
+       * This path is needed to load the provider during application load
+       * NOTE: The path is relative to root of application and should not end in a forward slash
+       * @type {String}
+       */
+      path: './server/routes/localUploadMiddleware',
+      options: {
+        /**
+         * Unique Id for this storage provider
+         * NOTE: Every storage provider should have a unique id
+         * @type {Number}
+         */
+        id: 1,
+        /**
+         * These are upload directories for local storage provider
+         * @type {String}
+         */
+        uploadsDirectory: './uploads',
+        tempDir: './temp'
+      }
+    },
+    amazonS3: {
+      /**
+       * This path is needed to load the provider during application load
+       * NOTE: The path is relative to root of application and should not end in a forward slash
+       * @type {String}
+       */
+      path: './server/routes/s3UploadMiddleware',
+      options: {
+        /**
+         * Unique Id for this storage provider
+         * NOTE: Every storage provider should have a unique id
+         * @type {Number}
+         */
+        id: 2,
+        /**
+         * AWS configuration for s3 upload service
+         * @type {Object}
+         */
+        aws: {
+          secure: false,
+          key: 'key',
+          secret: 'secret',
+          bucket: 'bucket',
+          region: 'region'
+        }
+      }
+    }
   }
 };
