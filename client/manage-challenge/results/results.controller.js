@@ -11,8 +11,9 @@
    */
   function ResultsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallengeResults, resolvedCurrentChallenge) {
     var vm = this;
-    vm.results = resolvedChallengeResults.content;
-    vm.totalCount = resolvedChallengeResults.metadata.totalCount;
+    //TODO:(DG: 11/6/2015): FIX to get real total count
+    vm.results = resolvedChallengeResults;
+    vm.totalCount = 0; //resolvedChallengeResults.metadata.totalCount;
     vm.challenge = resolvedCurrentChallenge;
     vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
     vm.tcMemberProfileUrl = tcMemberProfileUrl;

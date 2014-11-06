@@ -8,11 +8,11 @@
   <div class="content">
     <form name="requirementForm">
       <label class="requirement-desc-label">Content</label>
-      <textarea class="requirement-desc" data-maxlength="800" data-ng-model="requirements.content" placeholder="Type your requirement here (maximum 800 characters)"></textarea>
+      <textarea class="requirement-desc" data-ng-model="requirements.content" placeholder="Type your requirement here"></textarea>
       <a href="javascript:" data-ng-click="addRequirement()" class="btn blue-btn add-requirement"><i></i>Add Requirement</a>
     </form>
     <!--End .form-->
-    
+
     <div class="requirement-list">
       <div class="list-item" data-ng-repeat="requirement in requirements.requirementList">
         <div class="actions">
