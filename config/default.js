@@ -21,7 +21,8 @@ module.exports = {
      * Should be configured in storageProviders
      * @type {String}
      */
-    storageProvider : 'local'
+
+    storageProvider: process.env.STORAGE_PROVIDER || 'local'
   },
   /**
    * Storage providers can be configured here
@@ -48,7 +49,7 @@ module.exports = {
          * These are upload directories for local storage provider
          * @type {String}
          */
-        uploadsDirectory: './uploads',
+        uploadsDirectory: './upload',
         tempDir: './temp'
       }
     },
@@ -72,10 +73,11 @@ module.exports = {
          */
         aws: {
           secure: false,
-          key: 'key',
-          secret: 'secret',
-          bucket: 'bucket',
-          region: 'region'
+          key: process.env.AWS_KEY,
+          secret: process.env.AWS_SECRET,
+          bucket: process.env.AWS_BUCKET,
+          region: process.env.AWS_REGION
+
         }
       }
     }

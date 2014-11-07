@@ -23,7 +23,7 @@ module.exports = function(options, config) {
   }
   uploadDirectory = config.root + '/' + options.uploadsDirectory;
   var provider = {};
-  
+
   provider.handleUpload = function(req, res, next) {
 
     var form = new multiparty.Form({uploadDir: config.root + '/' + options.tempDir});
@@ -34,6 +34,7 @@ module.exports = function(options, config) {
     form.parse(req, function(err, fields, files) {
       if (err) {
         routeHelper.addError(req, err);
+
       } else {
         var file = {
           id: req.params.challengeId   // all files have the id that's same as challenge.id in json file.
@@ -41,6 +42,7 @@ module.exports = function(options, config) {
         // add field parameters
         Object.keys(fields).forEach(function(name) {
           file[name] = fields[name][0];
+
         });
 
         var receivedFile = files.file[0];  // assume only one file
@@ -67,10 +69,10 @@ module.exports = function(options, config) {
 
         // save file data to req.body and pass it to next handler
         req.body = file;
-        
+
       }
       next();
     });
-  }
+  };
   return provider;
-}
+};
