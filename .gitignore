@@ -32,6 +32,10 @@ config/local-*.yaml
 
 # Misc files
 .DS_Store
+config.codekit
 
 # Upload dir
 upload
+
+#env file
+.env
