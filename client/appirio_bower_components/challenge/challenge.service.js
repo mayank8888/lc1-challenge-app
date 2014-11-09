@@ -7,7 +7,7 @@
 
   /**
    * @name ChallengeService
-   * @desc General Angular Challenge Service
+   * @desc Challenge API Wrapper
    * @param {!angular.$http}
    * @param {!angular.$q}
    * @returns
@@ -18,8 +18,7 @@
     var _useLocal = TC_DATA_SOURCE.challenge.useLocal || false;
 
     var serviceAPI = {
-      //TEMP
-      getSubmissions: getSubmissions,
+      getSubmissionsData: getSubsAndFiles,
 
       //Challenge APIs
       getChallenge: getChallenge,
@@ -42,19 +41,38 @@
 
     function getSubmissions(challengeId) {
       var deferred = $q.defer();
-      Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards/').then(function (result) {
-        var scorecards = result.content;
+      Utils.apiGet('/_api_/challenges/' + challengeId + '/submissions/').then(function (result) {
+        var subs = result.content;
+        deferred.resolve(subs);
+      })
+
+      return deferred.promise;
+
+    }
+
+    function getSubsAndFiles(challengeId) {
+      var deferred = $q.defer();
+      getSubsAndScorecards(challengeId).then(function(subsScores) {
+        //console.log('subs back', subsScores)
         Utils.apiGet('/_api_/challenges/' + challengeId + '/files/').then(function(res) {
+
           var files = res.content;
+          //console.log('files', files)
           angular.forEach(files, function(file, key) {
+            //console.log('files', file.submissionId, file)
             if (file.submissionId) {
-              var x = _.where(scorecards, {
-                id: file.submissionId
-              });
-              x[0].file = file;
+
+              // var submission = _.where(subsScores.content, {
+              //   id: file.submissionId
+              // });
+              var key = _.findKey(subsScores.content, {id: file.submissionId})
+              //console.log('submission', key)
+              subsScores.content[key].file = file;
+              //submittedFiles[0].file = file;
             }
           });
-          deferred.resolve(result);
+          //console.log('subs back', subsScores)
+          deferred.resolve(subsScores);
         })
       });
 
@@ -83,9 +101,17 @@
         if (_useLocal) {
           return Utils.getJsonData('appirio_bower_components/challenge/data/challenges.json');
         } else {
-          return Utils.apiGet('/_api_/challenges');
+          Utils.apiGet('/_api_/challenges').then(function(challenges) {
+            _.forEach(challenges.content, function(challenge) {
+              challenge.statusDisplay = Utils.initCase(challenge.status)
+            });
+
+            deferred.resolve(challenges);
+          });
         }
       }
+      return deferred.promise;
+
     }
 
     function deleteChallenge(challengeId) {
@@ -179,8 +205,50 @@
 
     /* Result APIs */
     function getResults(challengeId) {
+      var deferred = $q.defer();
+      getSubsAndFiles(challengeId).then(function(subsScores) {
+        //console.log('sc', subsScores.content)
+          _.remove(subsScores.content, function(scorecard) {
+            return !scorecard.pay;
+          });
+          subsScores.metadata.totalCount = subsScores.content.length;
+          deferred.resolve(subsScores);
+      });
+      return deferred.promise;
+    }
+
+    function getSubsAndScorecards(challengeId) {
       //select * from scorecards where place is not null and pay = true and "challengeId" = {}
-      return Utils.getJsonData('appirio_bower_components/challenge/data/results.json');
+      if (_useLocal) {
+        return Utils.getJsonData('appirio_bower_components/challenge/data/results.json');
+      } else {
+        var deferred = $q.defer();
+
+        getScorecards(challengeId).then(function(scorecards) {
+          //console.log('sc', scorecards)
+
+          getSubmissions(challengeId).then(function(subs) {
+            //console.log('subs', subs)
+            //get submitter id for
+            _.forEach(scorecards.content, function(scorecard) {
+              //console.log(scorecard)
+              var submission = _.where(subs, {id: scorecard.submissionId})[0]
+
+              if (submission) {
+                scorecard.submitterId = submission.submitterId;
+              } else {
+                //Invalid submissionId on a scorecard
+              }
+
+            });
+
+            deferred.resolve(scorecards);
+          })
+
+
+        })
+        return deferred.promise;
+      }
     }
 
   }

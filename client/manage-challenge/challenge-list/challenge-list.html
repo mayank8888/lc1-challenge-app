@@ -52,7 +52,7 @@
           {{challenge.updatedAt}}
           </td>
           <td data-ng-if="!phone" class="text-left" data-sortable="'status'">
-          {{challenge.status}}
+          {{challenge.statusDisplay}}
           </td>
           <td data-ng-if="!phone" class="action-btn" ng-switch on="challenge.status">
             <a ng-href="#/challenges/{{challenge.id}}/submissions" class="fa fa-2x fa-eye" ng-switch-when="REVIEW" title="View Submissions"></a>
