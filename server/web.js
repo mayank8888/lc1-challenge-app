@@ -22,6 +22,7 @@
   app.use('/*/bower_components', express.static(__dirname + '/../client/bower_components'));
   app.use('/edit', express.static(__dirname + '/../client/edit-challenge'));
   app.use('/manage', express.static(__dirname + '/../client/manage-challenge'));
+  app.use('/login', express.static(__dirname + '/../client/login'));
   app.use('/bower_components', express.static(__dirname + '/../client/bower_components'));
   app.use('/*/appirio_bower_components', express.static(__dirname + '/../client/appirio_bower_components'));
 
@@ -34,6 +35,10 @@
   //create/edit challenge
   app.get('/edit', function (req, res) {
     res.sendFile('edit-challenge/public-info.html', fileOptions, handleFileError);
+  });
+
+  app.get('/login', function (req, res) {
+    res.sendFile('login/index.html', fileOptions, handleFileError);
   });
 
   //default direct to manage page

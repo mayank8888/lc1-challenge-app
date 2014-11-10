@@ -1,7 +1,7 @@
 (function (window, angular, undefined) {
   'use strict';
 
-  angular.module('tc.aaf')
+  var app = angular.module('tc.aaf')
     .service('HeaderService', HeaderService);
 
   /**
@@ -9,9 +9,10 @@
    * @desc General Angular Challenge Service
    * @ngInject
    */
-  HeaderService.$inject = ['Utils'];
-  function HeaderService(Utils) {
-    
+  function HeaderService(UserService, Utils) {
+
+    var _useLocal = true;
+
     var serviceAPI = {
       getUserProfile: getUserProfile
     };
@@ -21,8 +22,11 @@
     /***** Private Functions *****/
 
 	  function getUserProfile() {
-      //TODO: replace w/ real ajax call
-      return Utils.getJsonData('appirio_bower_components/aaf/layout/data/user-profile.json');
+      if (_useLocal) {
+        return Utils.getJsonData('appirio_bower_components/aaf/layout/data/user-profile.json');
+      } else {
+        return UserService.getCurrentUser();
+      }
     }
   }
 
