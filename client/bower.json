@@ -27,9 +27,12 @@
     "moment": "~2.8.3",
     "fontawesome": "~4.2",
     "bootstrap-tagsinput": "~0.4.2",
-    "typeahead.js": "~0.10.4"
+    "typeahead.js": "~0.10.4",
+    "angular-sanitize": "latest",
+    "showdown": "latest"
   },
   "resolutions": {
-    "jquery": "1.11.1"
+    "jquery": "1.11.1",
+    "angular": "1.2.26"
   }
 }
