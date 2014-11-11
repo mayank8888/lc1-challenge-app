@@ -4,7 +4,7 @@
   var express = require("express");
   var logfmt = require("logfmt");
   var url = require('url');
-  var config = require("../config/config");
+  var config = require("../config/default");
 
   var app = express();
   var passport = require('passport');

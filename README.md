@@ -8,12 +8,20 @@
 
 start with `grunt` or `node server/web.js`
 
+you must create a `.env` file with the following minimum settings
+```
+TC_AUTH0_CLIENT=foo
+TC_AUTH0_SECRET=bar
+```
+you may copy `env_sample` to `.env`
+
+
 ## Run
 
 start with `grunt` or `node server/web.js`
 
 ## Heroku
-add buildpack for node and grunt
+you may need to add a buildpack for node and grunt
 `heroku config:set BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git`
 
 ## client generation from swagger, both node and angular services
@@ -30,7 +38,7 @@ add buildpack for node and grunt
 
 
 ## tc-auth
- you must supply enviromental varaibles for both  `TC_AUTH0_CLIENT` and `TC_AUTH0_SECRET` you can set them to any value for the time being until we have the config dir set up
+ you must supply enviromential variables for both  `TC_AUTH0_CLIENT` and `TC_AUTH0_SECRET` you can set them to any value for the time being until we have the config dir set up.  If you have created the .env file you can ignore this.
  ```export TC_AUTH0_CLIENT=foo```
  ```export TC_AUTH0_SECRET=bar```
 
