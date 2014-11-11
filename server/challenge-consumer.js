@@ -1,6 +1,7 @@
 /*jshint -W069 */
 /**
  * API to host challenge, requirements, scorecard and results
+ * generated on 11/10/2014
  * @class Challenge
  * @param {string} domain - The project domain
  */
@@ -18,6 +19,7 @@ module.exports.Challenge = function(domain) {
      * @param {{integer}} limit - maximum number of records to return
      * @param {{integer}} offset - id to start return values
      * @param {{string}} orderBy - field name to sort {asc [nulls {first | last} ] | desc  [nulls {first | last} }
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallenges = function(parameters) {
@@ -46,6 +48,10 @@ module.exports.Challenge = function(domain) {
 
         if (parameters['orderBy'] !== undefined) {
             queryParameters['orderBy'] = parameters['orderBy'];
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -165,6 +171,7 @@ module.exports.Challenge = function(domain) {
      * @method
      * @name Challenge#getChallengesByChallengeId
      * @param {{integer}} challengeId - API to host challenge, requirements, scorecard and results
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeId = function(parameters) {
@@ -184,6 +191,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['challengeId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: challengeId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -457,6 +468,7 @@ module.exports.Challenge = function(domain) {
      * @method
      * @name Challenge#getChallengesByChallengeIdFiles
      * @param {{integer}} challengeId - the id for the challenge to add the participant to
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdFiles = function(parameters) {
@@ -476,6 +488,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['challengeId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: challengeId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -526,6 +542,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdFilesByFileId
      * @param {{integer}} challengeId - The Challenge Id
      * @param {{integer}} fileId - The Id of the file
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdFilesByFileId = function(parameters) {
@@ -552,6 +569,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['fileId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: fileId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -842,6 +863,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdParticipants
      * @param {{integer}} challengeId - the id for the challenge to add the participant to
      * @param {{string}} role - The role to filter the results by
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdParticipants = function(parameters) {
@@ -865,6 +887,10 @@ module.exports.Challenge = function(domain) {
 
         if (parameters['role'] !== undefined) {
             queryParameters['role'] = parameters['role'];
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -915,6 +941,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdParticipantsByParticipantId
      * @param {{integer}} challengeId - The Challenge Id
      * @param {{integer}} participantId - The Id of the participant
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdParticipantsByParticipantId = function(parameters) {
@@ -941,6 +968,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['participantId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: participantId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -1230,6 +1261,7 @@ module.exports.Challenge = function(domain) {
      * @method
      * @name Challenge#getChallengesByChallengeIdSubmissions
      * @param {{integer}} challengeId - the id for the challenge to add the participant to
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdSubmissions = function(parameters) {
@@ -1249,6 +1281,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['challengeId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: challengeId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -1299,6 +1335,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdSubmissionsBySubmissionId
      * @param {{integer}} challengeId - The Challenge Id
      * @param {{integer}} submissionId - The Id of the submission
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdSubmissionsBySubmissionId = function(parameters) {
@@ -1325,6 +1362,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['submissionId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: submissionId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -1623,6 +1664,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdSubmissionsBySubmissionIdFiles
      * @param {{integer}} challengeId - the id for the challenge to add the participant to
      * @param {{integer}} submissionId - the id of the challenge
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdSubmissionsBySubmissionIdFiles = function(parameters) {
@@ -1649,6 +1691,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['submissionId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: submissionId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -1700,6 +1746,7 @@ module.exports.Challenge = function(domain) {
      * @param {{integer}} challengeId - The Challenge Id
      * @param {{integer}} submissionId - the id of the challenge
      * @param {{integer}} fileId - The Id of the file
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdSubmissionsBySubmissionIdFilesByFileId = function(parameters) {
@@ -1733,6 +1780,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['fileId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: fileId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -2038,6 +2089,7 @@ module.exports.Challenge = function(domain) {
      * @method
      * @name Challenge#getChallengesByChallengeIdRequirements
      * @param {{integer}} challengeId - API to host challenge, requirements, scorecard and results
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdRequirements = function(parameters) {
@@ -2057,6 +2109,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['challengeId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: challengeId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -2107,6 +2163,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdRequirementsByRequirementId
      * @param {{integer}} challengeId - The Challenge Id
      * @param {{integer}} requirementId - The Id of the requirement
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdRequirementsByRequirementId = function(parameters) {
@@ -2133,6 +2190,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['requirementId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: requirementId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -2422,6 +2483,7 @@ module.exports.Challenge = function(domain) {
      * @method
      * @name Challenge#getChallengesByChallengeIdScorecards
      * @param {{integer}} challengeId - API to host challenge, requirements, scorecard and results
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdScorecards = function(parameters) {
@@ -2441,6 +2503,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['challengeId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: challengeId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -2491,6 +2557,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdScorecardsByScorecardId
      * @param {{integer}} challengeId - API to host challenge, requirements, scorecard and results
      * @param {{integer}} scorecardId - API to host challenge, requirements, scorecard and results
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdScorecardsByScorecardId = function(parameters) {
@@ -2517,6 +2584,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['scorecardId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: scorecardId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -2729,6 +2800,7 @@ module.exports.Challenge = function(domain) {
      * @name Challenge#getChallengesByChallengeIdScorecardsByScorecardIdScorecardItems
      * @param {{integer}} challengeId - API to host challenge, requirements, scorecard and results
      * @param {{integer}} scorecardId - API to host challenge, requirements, scorecard and results
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdScorecardsByScorecardIdScorecardItems = function(parameters) {
@@ -2755,6 +2827,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['scorecardId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: scorecardId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
@@ -2892,6 +2968,7 @@ module.exports.Challenge = function(domain) {
      * @param {{integer}} challengeId - id of challenge
      * @param {{integer}} scorecardId - id of scorecard
      * @param {{integer}} scorecardItemId - id of scorecardItem
+     * @param {{string}} fields - partial fields that need to be response. Support (1) comma-separated field list and (2) a/b nested selection.
      *
      */
     this.getChallengesByChallengeIdScorecardsByScorecardIdScorecardItemsByScorecardItemId = function(parameters) {
@@ -2925,6 +3002,10 @@ module.exports.Challenge = function(domain) {
         if (parameters['scorecardItemId'] === undefined) {
             deferred.reject(new Error('Missing required  parameter: scorecardItemId'));
             return deferred.promise;
+        }
+
+        if (parameters['fields'] !== undefined) {
+            queryParameters['fields'] = parameters['fields'];
         }
 
         if (parameters.$queryParameters) {
