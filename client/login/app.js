@@ -6,13 +6,14 @@
 
   function LoginController() {
   	var vm = this;
+    //TODO(DG: 11/11/2014): Push to config
   	vm.auth0Host = 'https://serenity-tc.auth0.com';
   	vm.clientId = 'g3hdq1pfeuvnuayv96aMMpWKUnCWJjVb';
   	vm.redirectUri = 'http://localhost:8000/_auth_/callback';
 
   	vm.connections = [
 			{
-  			name: 'google',
+  			name: 'google-oauth2',
   			displayName: 'Google Login'
   		},
 			{
