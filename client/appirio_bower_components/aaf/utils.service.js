@@ -18,7 +18,10 @@
     var _challenges;
 
     var serviceAPI = {
-      apiCall: apiCall,
+      apiGet: apiGet,
+      apiPost: apiPost,
+      apiUpdate: apiUpdate,
+      apiDelete: apiDelete,
       initCase: initCase,
       getBrowser: getBrowser,
       getJsonData: getJsonData,
@@ -43,7 +46,7 @@
 
     //TODO: remove or replace when we refactor to use ng-grid
     //helper function for configuring ng-tables
-    function handleTable(controller, $scope, headers, data, sorting) {
+    function handleTable(controller, $scope, headers, data, totalCount, sorting) {
       var perPage = AAF_TABLE.defaultRowsPerPage;
       var vm = controller;
 
@@ -55,7 +58,7 @@
           sorting: sorting // initial sorting
         },
         {
-          total: data.length, // length of data
+          total: totalCount,
           getData: function ($defer, params) {
             // use built-in angular filter
             var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
@@ -77,11 +80,51 @@
       return deferred.promise;
     }
 
-    function apiCall(uri) {
-      var deferred = $q.defer();      
+    //TODO: refactor http calls
+    function apiGet(uri) {
+      var deferred = $q.defer();
       $http({method: 'GET', url: uri})
         .success(function (data, status, headers, config) {
-          $log.debug('data back from api call: ', data.content);
+          $log.debug('angular apiGet: data back: ', data);
+          deferred.resolve(data);
+        })
+        .error(function (data, status, headers, config) {
+          deferred.reject(data);
+        });
+      return deferred.promise;
+    }
+
+    function apiPost(uri, body) {
+      var deferred = $q.defer();
+      $http.post(uri, body)
+        .success(function (data, status, headers, config) {
+          $log.debug('data back from create call: ', data.content);
+          deferred.resolve(data.content);
+        })
+        .error(function (data, status, headers, config) {
+          deferred.reject(data);
+        });
+      return deferred.promise;
+    }
+
+    function apiUpdate(uri, body) {
+      var deferred = $q.defer();
+      $http.put(uri, body)
+        .success(function (data, status, headers, config) {
+          $log.debug('data back from update call: ', data.content);
+          deferred.resolve(data.content);
+        })
+        .error(function (data, status, headers, config) {
+          deferred.reject(data);
+        });
+      return deferred.promise;
+    }
+
+    function apiDelete(uri, body) {
+      var deferred = $q.defer();
+      $http.delete(uri, body)
+        .success(function (data, status, headers, config) {
+          $log.debug('data back from delete call: ', data);
           deferred.resolve(data.content);
         })
         .error(function (data, status, headers, config) {

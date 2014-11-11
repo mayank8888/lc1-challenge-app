@@ -16,7 +16,8 @@
 
     var Challenges = Restangular.service('challenges');
     var Accounts = Restangular.service('accounts');
-    
+    var Tags = Restangular.service('tags');
+
     var service = {
       getChallenge: getChallenge,
       createChallenge: createChallenge,
@@ -35,9 +36,10 @@
       getFile: getFile,
       deleteFile: deleteFile,
 
+      getAllTags: getAllTags,
       getAccounts: getAccounts,
       getConfig: getConfig
-      
+
     };
     return service;
 
@@ -131,6 +133,11 @@
     /*--------------*/
     /* misc APIs */
     /*--------------*/
+
+    /*retrieve all tags to be attached to a challenge*/
+    function getAllTags() {
+      return Tags.getList();
+    }
 
     /*find a account by query string to be attached to a challenge*/
     function getAccounts(query) {

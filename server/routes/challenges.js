@@ -9,9 +9,29 @@ var _ = require('lodash');
 var routeHelper = require('./routeHelper');
 var clientHelper = require('./clientHelper');
 var localFileUploader = require('./localUploadMiddleware');
-var config = require("../../config/config");
+//var config = require("../../config/config");
 var Challenge = require('../challenge-consumer').Challenge;
+var controllerHelper = require('./controllerHelper');
+var config = require('config');
+/**
+ * Upload middleware
+ * @type {Object}
+ */
+var uploadMiddleware;
 
+/**
+ * Initializing upload middleware based on configuration for storage provider
+ */
+var storageProviders = config.storageProviders,
+  providerName = config.uploads.storageProvider;
+  //console.log('the var storageProviders is ', storageProviders);
+
+if(storageProviders.hasOwnProperty(providerName)) {
+  var providerConfig = storageProviders[providerName];
+  uploadMiddleware = require(config.root + '/' + providerConfig.path)(providerConfig.options, config);
+} else {
+  throw new Error(providerName + 'is not configured in Storage Providers');
+}
 
 // Challenge client for Swagger Challenge class
 var client = new Challenge(config.challenge.apiUrl);
@@ -37,6 +57,47 @@ router.route('/configuration')
   .get(getChallengeConfiguration, routeHelper.renderJson);
 router.route('/:challengeId/launch')
   .post(launchChallenge, challengeController.update, routeHelper.renderJson);
+
+  /*  from master
+  .post(challengeController.get, launchChallenge, challengeController.update, routeHelper.renderJson);
+
+// mock requirement controller
+var requirementJsonFile = routeHelper.EDIT_DATA_PATH+'/requirements.json';
+var requirementController = controllerHelper.buildController('Requirement', 'Challenge', requirementJsonFile);
+
+router.route('/:challengeId/requirements')
+  .get(requirementController.all, routeHelper.renderJson)
+  .post(requirementController.create, routeHelper.renderJson);
+router.route('/:challengeId/requirements/:requirementId')
+  .get(requirementController.get, routeHelper.renderJson)
+  .put(requirementController.update, routeHelper.renderJson)
+  .delete(requirementController.delete, routeHelper.renderJson);
+
+
+// mock file controller
+var fileJsonFile = routeHelper.EDIT_DATA_PATH+'/files.json';
+var fileController = controllerHelper.buildController('File', 'Challenge', fileJsonFile);
+
+router.route('/:challengeId/files')
+  .get(fileController.all, routeHelper.renderJson)
+  .post(uploadMiddleware.handleUpload, fileController.create, routeHelper.renderJson);
+router.route('/:challengeId/files/:fileId')
+  .get(fileController.get, routeHelper.renderJson)
+  .put(fileController.update, routeHelper.renderJson)
+  .delete(fileController.delete, routeHelper.renderJson);
+
+
+// mock prize controller
+var prizeJsonFile = routeHelper.EDIT_DATA_PATH+'/prizes.json';
+var prizeController = controllerHelper.buildController('Prize', 'Challenge', prizeJsonFile);
+router.route('/:challengeId/prizes')
+  .get(prizeController.all, routeHelper.renderJson)
+  .post(prizeController.create, routeHelper.renderJson);
+router.route('/:challengeId/prizes/:prizeId')
+  .get(prizeController.get, routeHelper.renderJson)
+  .put(prizeController.update, routeHelper.renderJson)
+  .delete(prizeController.delete, routeHelper.renderJson);
+  */
 
 // build routes for challenge
 clientHelper.buildRoutes(router, challengeController, '/', 'challengeId');
@@ -91,8 +152,8 @@ var fileController = clientHelper.buildClientController(fileApiMethods);
 // build routes for file
 clientHelper.buildRoutes(router, fileController, '/:challengeId/files', 'fileId');
 
-router.route('/:challengeId/uploadfile')
-  .post(localFileUploader.handleUpload, routeHelper.renderJson);
+//router.route('/:challengeId/uploadfile')
+  //.post(localFileUploader.handleUpload, routeHelper.renderJson);
 
 
 /**

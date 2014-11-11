@@ -31,7 +31,7 @@
           <th data-ng-if="!phone" class="text-center" colspan="3"><div>Action</div></th>
         </tr>
       </thead>
-    
+
       <tbody data-ng-repeat="result in $data">
         <tr data-ng-class="$odd?'odd':''">
           <td>
@@ -44,14 +44,14 @@
             {{result.prize}}
           </td>
           <td class="text-left" data-sortable="'submission.submitter.handle'">
-            <a href="{{vm.tcMemberProfileUrl(result.submission.submitter.handle)}}" target="_blank">{{result.submission.submitter.handle}}</a>
+            <a href="{{vm.tcMemberProfileUrl(result.submission.submitter.handle)}}" target="_blank">{{result.submitterId}}</a>
           </td>
-          <td data-ng-if="!phone" class="text-left" data-sortable="'score'">
-          {{result.score}}
-          
+          <td data-ng-if="!phone" class="text-left" data-sortable="'scoreSum'">
+          {{result.scoreSum}}
+
           </td>
           <td class="action-btn">
-            <a ng-href="data/submission.pdf" class="fa fa-2x fa-download" title="Download Submission"></a>
+            <a ng-href="{{result.file.filePath}}" class="fa fa-2x fa-download" title="Download Submission"></a>
           </td>
         </tr>
         </tbody>

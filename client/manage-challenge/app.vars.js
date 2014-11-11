@@ -5,6 +5,11 @@
     .constant("TC_URLS", {
       "baseChallengeDetailsUrl": "http://www.topcoder.com/challenge-details/",
       "baseMemberProfileUrl": "https://www.topcoder.com/member-profile/"
+    })
+    .constant("TC_DATA_SOURCE", {
+    	"challenge": {
+    		useLocal: false
+    	}
     });
 
 

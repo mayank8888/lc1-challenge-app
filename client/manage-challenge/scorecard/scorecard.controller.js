@@ -11,7 +11,11 @@
      */
     function ScorecardController($location, $scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedScorecard, resolvedCurrentChallenge) {
         //dummy data
-        var scoreItems = [
+        var scoreItems = {
+          metadata: {
+            totalCount: 3
+          },
+          content: [
           {
             "requirement": {
               "id": 1,
@@ -28,10 +32,11 @@
             "score": '',
             "comment": null
           }
-        ];
+        ]};
 
       var vm = this;
-      vm.scoreItems = scoreItems;
+      vm.scoreItems = scoreItems.content;
+      vm.totalCount = scoreItems.metadata.totalCount;
       vm.scorecard = resolvedScorecard;
       vm.challenge = resolvedCurrentChallenge;
       vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
@@ -68,7 +73,7 @@
         ];
 
 
-        Utils.handleTable(vm, $scope, headers, vm.scoreItems, sort);
+        Utils.handleTable(vm, $scope, headers, vm.scoreItems, vm.totalCount, sort);
       }
 
       //helper functions

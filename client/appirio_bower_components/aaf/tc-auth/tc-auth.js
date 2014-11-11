@@ -3,18 +3,18 @@
 
   angular.module('tc.aaf.auth', ['ngCookies'])
   .factory('authInterceptor', AuthInterceptor)
-  
+  .service('UserService', UserService)
   .config(function ($httpProvider, $routeProvider) {
     $httpProvider.interceptors.push('authInterceptor');
 
     $routeProvider
       .when('/_auth_/login', {
         //Note: a value for template is req'd; cannot remove template attr
-        template: '', 
+        template: '',
         controller: LoginHandler
       })
       .when('/_auth_/logout', {
-        template: '', 
+        template: '',
         controller: LogoutHandler
       });
   });
@@ -30,10 +30,10 @@
     if (qs) {
       //TODO(DG: 10/30/2014): JWT validation
       var jwt = qs.jwt;
-      
+
       //store token on client
       $window.sessionStorage.token = jwt;
-      
+
       //clear tokens from qs
       $location.search('jwt', null);
       $location.search('state', null);
@@ -47,22 +47,25 @@
    */
   function AuthInterceptor($cookies, $log, $q, $window) {
     return {
+      //Add Auth Header
       request: function (config) {
         config.headers = config.headers || {};
         //attempt to grab auth token in this order
-        //1. browser session storage 
+        //1. browser session storage
         //2. topcoder cookie (tcjwt)
         var token = $window.sessionStorage.token || $cookies.tcjwt;
-        //$log.debug('token: ' + token);
         if (token) {
           config.headers.Authorization = 'Bearer ' + token;
         }
         return config;
       },
       responseError: function (rejection) {
+        //console.log('have an auth error; redirect to login', rejection)
         if (rejection.status === 401) {
           //TODO(DG: 10/30/2014): Properly handle the case where the user is not authenticated
           $log.error('tc-auth: auth failed', rejection);
+          //$location.url('/login')
+          $window.location.href = 'http://localhost:8000/login';
         }
         return $q.reject(rejection);
       }
@@ -74,7 +77,43 @@
    */
   function LogoutHandler($window) {
     delete $window.sessionStorage.token;
-  };
+  }
 
-  
+  /**
+   * @ngInject
+   */
+  function UserService($q, $window, Utils) {
+    var currentUser;
+
+    //TODO(DG: 11/10/2014): Move this to config
+    var whitelist = [
+      'gaitonde'
+    ];
+
+    return {
+      getCurrentUser: function() {
+        var deferred = $q.defer();
+
+        if (currentUser) {
+          deferred.resolve(currentUser);
+        } else {
+          Utils.apiGet('/_api_/user').then(function(user) {
+            if (!_.contains(whitelist, user.nickname)) {
+              //TODO:(DG: 11/10/2014): move to config
+              $window.location.href ='https://www.topcoder.com';
+            } else {
+              //console.log('putting in logged user in to val tcUser:', user)
+              currentUser = user;
+              deferred.resolve(currentUser);
+            }
+
+          });
+        }
+
+        return deferred.promise;
+      }
+    }
+  }
+
+
 })(window, window.angular);

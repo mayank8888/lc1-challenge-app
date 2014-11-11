@@ -7,17 +7,13 @@
 
   /**
    * @name ManageChallengeConfig
-   * @desc 
+   * @desc
    * @param {!angular.$routeProvider}
    * @param {!angular.$locationProvider}
-   * @returns 
+   * @returns
    * @ngInject
-   */  
+   */
   function ManageChallengeConfig($routeProvider, $locationProvider) {
-    //provides the extra '/' after the hash 
-    //eg. does this /manage/#/challenges instead of manage/#challenges
-    //$locationProvider.hashPrefix('x');
-
     $routeProvider
       //show list of challenges
       .when("/challenges", {
@@ -37,13 +33,13 @@
         controllerAs: "vm",
         templateUrl: "submissions/submissions.html",
         resolve: {
-          resolvedSubmissions: function getScorecards($route, ChallengeService) {
-            return ChallengeService.getScorecards($route.current.params.challengeId);
+          submissionData: function getSubmissionData($route, ChallengeService) {
+            return ChallengeService.getSubmissionsData($route.current.params.challengeId);
           },
           resolvedCurrentChallenge: function getChallenge($route, ChallengeService) {
             return ChallengeService.getChallenge($route.current.params.challengeId);
           }
-        }          
+        }
       })
 
       //show a scorecard for a given submission
@@ -57,7 +53,7 @@
           },
           resolvedCurrentChallenge: function getChallenge($route, ChallengeService) {
             return ChallengeService.getChallenge($route.current.params.challengeId);
-          }          
+          }
         }
       })
 
@@ -73,7 +69,7 @@
           resolvedCurrentChallenge: function getChallenge($route, ChallengeService) {
             return ChallengeService.getChallenge($route.current.params.challengeId);
           }
-        }          
+        }
 
       })
 

@@ -7,8 +7,9 @@
   var config = require("../config/config");
 
   var app = express();
-  //var bodyParser = require('body-parser');
   var passport = require('passport');
+  // tc auth stuff
+  var tcAuth = require('./appirio_node_modules/tc-server-auth')(app);
 
   var fileOptions = {
     root: __dirname + '/../client'
@@ -20,15 +21,10 @@
   app.use(logfmt.requestLogger());
   app.use(passport.initialize());
 
-  //TODO: enable auth stuff
-  //Example of a module can apply auth to the endpoint
-  // tc auth stuff
-  var tcAuth = require('./appirio_node_modules/tc-server-auth')(app);
-  app.use('/_api_/*', tcAuth);
-
   app.use('/*/bower_components', express.static(__dirname + '/../client/bower_components'));
   app.use('/edit', express.static(__dirname + '/../client/edit-challenge'));
   app.use('/manage', express.static(__dirname + '/../client/manage-challenge'));
+  app.use('/login', express.static(__dirname + '/../client/login'));
   app.use('/bower_components', express.static(__dirname + '/../client/bower_components'));
   app.use('/*/appirio_bower_components', express.static(__dirname + '/../client/appirio_bower_components'));
 
@@ -43,6 +39,10 @@
     res.sendFile('edit-challenge/public-info.html', fileOptions, handleFileError);
   });
 
+  app.get('/login', function (req, res) {
+    res.sendFile('login/index.html', fileOptions, handleFileError);
+  });
+
   //default direct to manage page
   app.get('/', function (req, res) {
     res.redirect('/manage');
@@ -53,10 +53,10 @@
   app.use(bodyParser.json());
 
   var challenges = require('./routes/challenges');
-  // var tags = require('./routes/tags');
+  var tags = require('./routes/tags');
   var accounts = require('./routes/accounts');
   app.use('/challenges', challenges);
-  // app.use('/tags', tags);
+  app.use('/tags', tags);
   app.use('/accounts', accounts);
 
   //server config

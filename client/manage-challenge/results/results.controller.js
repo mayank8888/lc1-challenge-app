@@ -11,7 +11,9 @@
    */
   function ResultsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallengeResults, resolvedCurrentChallenge) {
     var vm = this;
-    vm.results = resolvedChallengeResults;
+    //TODO:(DG: 11/6/2015): FIX to get real total count
+    vm.results = resolvedChallengeResults.content;
+    vm.totalCount = resolvedChallengeResults.metadata.totalCount;
     vm.challenge = resolvedCurrentChallenge;
     vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
     vm.tcMemberProfileUrl = tcMemberProfileUrl;
@@ -40,12 +42,12 @@
         },
         {
           "colName": "Score",
-          "col": "score"
+          "col": "scoreSum"
         }
       ];
 
       var sort = {place: 'asc'};
-      Utils.handleTable(vm, $scope, headers, vm.results, sort);
+      Utils.handleTable(vm, $scope, headers, vm.results, vm.totalCount, sort);
     }
 
     //helper functions
@@ -54,7 +56,6 @@
     }
 
     function tcMemberProfileUrl(memberHandle) {
-      console.log('memberHandle', memberHandle)
       return TC_URLS.baseMemberProfileUrl + memberHandle;
     }
 
