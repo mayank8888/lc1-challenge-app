@@ -69,7 +69,8 @@
     </table>
 
     <div class="custom-pager">
-      <span data-ng-if="!phone" class="label">Showing items <b>1-10</b> of <b>{{vm.tableParams.total()}}</b></span>
+      <span data-ng-if="!phone" class="label">Showing items <b>{{vm.tableParams.page() * 10 -9 }}-{{vm.tableParams.page() * 10 }}</b> of <b>{{vm.totalCount}}</b></span>
+  
     </div>
 
   </div>
