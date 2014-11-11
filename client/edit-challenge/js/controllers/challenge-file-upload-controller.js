@@ -55,21 +55,18 @@
           title: $scope.fileTitle
         },
         file: $scope.selectedFile,
-        fileFormDataName: 'files'
+        fileFormDataName: 'file'
       });
       $scope.upload.then(function (uploadResponse) {    // success
-
-        ChallengeService.createFile($scope.challenge.id, uploadResponse.data)
-          .then(function(actionResponse) {
-            return ChallengeService.getFile($scope.challenge.id, actionResponse.id);
-          })
+        var actionResponse = uploadResponse.data;
+        ChallengeService.getFile($scope.challenge.id, actionResponse.id)
           .then(function(file) {
             // add file to list
             $scope.fileBrowsing.uploadedFiles.push(file);
             // clear form
-            resetUploadForm();            
+            resetUploadForm();      
           }, function(err) {
-            console.log('createFile: error: ', err);
+            console.log('getFile: error: ', err);
           });
 
       }, function (err) {    // error

@@ -75,7 +75,7 @@
     };
 
     /*get all tags and initialize the tags inpu and initialize the tags input*/
-    $scope.tags = '';
+    $scope.tags = $scope.challenge.tags;
     var tagNames = null;
     function getAllTags() {
       ChallengeService.getAllTags().then(function(data) {

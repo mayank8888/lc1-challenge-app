@@ -8,7 +8,6 @@ var router = express.Router();
 var _ = require('lodash');
 var routeHelper = require('./routeHelper');
 var clientHelper = require('./clientHelper');
-var localFileUploader = require('./localUploadMiddleware');
 //var config = require("../../config/config");
 var Challenge = require('../challenge-consumer').Challenge;
 var controllerHelper = require('./controllerHelper');
@@ -152,8 +151,10 @@ var fileController = clientHelper.buildClientController(fileApiMethods);
 // build routes for file
 clientHelper.buildRoutes(router, fileController, '/:challengeId/files', 'fileId');
 
-//router.route('/:challengeId/uploadfile')
-  //.post(localFileUploader.handleUpload, routeHelper.renderJson);
+router.route('/:challengeId/uploadfile')
+    // file is uploaded to the storage provider first, the storage provider set the file data to req.body
+  .post(uploadMiddleware.handleUpload, clientHelper.wrapApiMethod(client.postChallengesByChallengeIdFiles), routeHelper.renderJson);
+
 
 
 /**
