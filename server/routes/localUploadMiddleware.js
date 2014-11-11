@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2014 TopCoder, Inc. All rights reserved.
+ file from master
  */
 'use strict';
 
@@ -34,11 +35,9 @@ module.exports = function(options, config) {
     form.parse(req, function(err, fields, files) {
       if (err) {
         routeHelper.addError(req, err);
-
+        next();
       } else {
-        var file = {
-          id: req.params.challengeId   // all files have the id that's same as challenge.id in json file.
-        };
+        var file = {};
         // add field parameters
         Object.keys(fields).forEach(function(name) {
           file[name] = fields[name][0];
@@ -64,14 +63,16 @@ module.exports = function(options, config) {
           if(err) {
             console.log('Error moving file [ ' + targetPath + ' ] ' + JSON.stringify(err));
             routeHelper.addError(req, err);
+            next();
+          } else {
+            // save file data to req.body and pass it to next handler
+            req.body = file;
+            next();
           }
         });
 
-        // save file data to req.body and pass it to next handler
-        req.body = file;
-
       }
-      next();
+      
     });
   };
   return provider;
