@@ -36,6 +36,7 @@ config.codekit
 
 # Upload dir
 upload
+temp
 
 #env file
 .env
