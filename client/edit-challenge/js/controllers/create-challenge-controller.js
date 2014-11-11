@@ -14,6 +14,7 @@
 	function CreateChallengeController($scope, $timeout, $filter, $state, ChallengeService, challenge) {
 
     $scope.challenge = challenge;
+    $scope.editDescription = true;
     $scope.publicBrowsing = {
       complete: false
     }
@@ -236,7 +237,7 @@
       var start = moment(concatenateDateTime($scope.timeLine.stdt, $scope.timeLine.timeSelectedStart));
       var end = moment(concatenateDateTime($scope.timeLine.enddt, $scope.timeLine.timeSelectedEnd));
       $scope.timeLine.dateDiff = end.diff(start, 'days');
-    };
+    }
 
 
     /*---------------*/
@@ -319,12 +320,12 @@
           return Number(b.prize) - Number(a.prize);
         }
       });
-    };
+    }
 
     /* check prizes and set complete if prize and customer are set*/
     $scope.checkPrizeComplete = function() {
       $scope.prizes.complete = (!!($scope.prizes.totalPrize > 0 && $scope.placePrizes.places[0].prize > 0) && $scope.prizes.customerAccountId);
-    }
+    };
 
     /*update prizes when input text loses a focus*/
     $scope.updatePrizes = function() {

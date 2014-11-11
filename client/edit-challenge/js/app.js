@@ -14,6 +14,7 @@
     'angularFileUpload',
     'restangular',
     'ui.router',
+    'ngSanitize',
 
     //custom
     'directives'
