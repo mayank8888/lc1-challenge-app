@@ -75,7 +75,7 @@
       });
     };
 
-    /*get all tags and initialize the tags inpu and initialize the tags input*/
+    /*get all tags and initialize the tags input and initialize the tags input*/
     $scope.tags = $scope.challenge.tags;
     var tagNames = null;
     function getAllTags() {
