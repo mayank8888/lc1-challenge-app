@@ -45,7 +45,7 @@
   /**
    * @ngInject
    */
-  function AuthInterceptor($cookies, $log, $q, $window) {
+  function AuthInterceptor($cookies, $location, $log, $q, $window) {
     return {
       //Add Auth Header
       request: function (config) {
@@ -64,8 +64,8 @@
         if (rejection.status === 401) {
           //TODO(DG: 10/30/2014): Properly handle the case where the user is not authenticated
           $log.error('tc-auth: auth failed', rejection);
-          //$location.url('/login')
-          $window.location.href = 'http://localhost:8000/login';
+          var baseUrl =  $location.protocol() + '://' + $location.host() + ':' + $location.port();
+          $window.location.href = baseUrl + '/login';
         }
         return $q.reject(rejection);
       }
@@ -82,12 +82,18 @@
   /**
    * @ngInject
    */
-  function UserService($q, $window, Utils) {
+  function UserService($q, $window, Utils, TC_URLS) {
     var currentUser;
 
     //TODO(DG: 11/10/2014): Move this to config
+
+    //github username
     var whitelist = [
-      'gaitonde'
+      'bowerma',
+      'bryceglass',
+      'gaitonde',
+      'indytechcook',
+      'westonian'
     ];
 
     return {
@@ -99,10 +105,9 @@
         } else {
           Utils.apiGet('/_api_/user').then(function(user) {
             if (!_.contains(whitelist, user.nickname)) {
-              //TODO:(DG: 11/10/2014): move to config
-              $window.location.href ='https://www.topcoder.com';
+              $window.location.href = TC_URLS.baseUrl;
+              deferred.reject();
             } else {
-              //console.log('putting in logged user in to val tcUser:', user)
               currentUser = user;
               deferred.resolve(currentUser);
             }

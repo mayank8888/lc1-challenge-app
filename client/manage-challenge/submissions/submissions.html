@@ -32,7 +32,7 @@
           <th data-ng-if="!phone" class="text-center" colspan="3"><div>Action</div></th>
       </tr>
       </thead>
-      <tbody data-ng-repeat="scorecard in $data">
+      <tbody data-ng-repeat="submission in $data">
           <tr data-ng-class="$odd?'odd':''">
               <td>
                   &nbsp; {{vm.tableParams.total | json}}
@@ -41,28 +41,28 @@
                   <a href="javascript:" class="add-btn {{submission.expand?'expand':''}}" data-ng-click="toggleExpand(submission)"></a>
               </td>
               <td class="text-left" data-sortable="'id'">
-                  {{scorecard.id}}
+                  {{submission.id}}
               </td>
               <td class="text-left" data-sortable="'updatedAt'">
-                  {{scorecard.updatedAt}}
+                  {{submission.updatedAt}}
               </td>
               <td class="text-left" data-sortable="'updatedBy'">
-                  {{scorecard.updatedBy}}
+                  {{submission.updatedBy}}
               </td>
               <td class="text-left" data-sortable="'scoreSum'">
-                  {{scorecard.scoreSum}}
+                  {{submission.scorecard.scoreSum || 0}}
               </td>
               <td data-ng-if="!phone" class="text-left" data-sortable="'status'">
-                  {{scorecard.status}}
+                  {{submission.scorecard.statusDisplay}}
               </td>
               <!-- TODO: logic for actions -->
               <td data-ng-if="!phone" class="action-btn">
                   <!-- use download attribute to do download -->
-                  <a href="{{scorecard.file.filePath}}" download class="fa fa-2x fa-download" title="Download Submission"></a>
+                  <a href="{{submission.file.filePath + submission.file.fileName}}" download class="fa fa-2x fa-download" title="Download Submission"></a>
               </td>
                <td data-ng-if="!phone" class="action-btn">
-                  <a ng-if="submission.status === 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.id}}/scorecard" class="fa fa-2x fa-check-square-o" title="Create Scorecard"></a>
-                  <a ng-if="submission.status !== 'New'" href="#/challenges/{{vm.challenge.id}}/submissions/{{scorecard.id}}/scorecard" class="fa fa-2x fa-check-square" title="Review Scorecard"></a>
+                  <a ng-if="!submission.scorecard.id" href="#/challenges/{{vm.challenge.id}}/submissions/{{submission.id}}/new" class="fa fa-2x fa-check-square-o" title="Create Scorecard"></a>
+                  <a ng-if="submission.scorecard.id" href="#/challenges/{{vm.challenge.id}}/submissions/{{submission.id}}/scorecard/{{submission.scorecard.id}}" class="fa fa-2x fa-check-square" title="Review Scorecard"></a>
               </td>
           </tr>
       </tbody>

@@ -19,6 +19,7 @@
 
     var serviceAPI = {
       apiGet: apiGet,
+      apiPatch: apiPatch,
       apiPost: apiPost,
       apiUpdate: apiUpdate,
       apiDelete: apiDelete,
@@ -85,7 +86,7 @@
       var deferred = $q.defer();
       $http({method: 'GET', url: uri})
         .success(function (data, status, headers, config) {
-          $log.debug('angular apiGet: data back: ', data);
+          //$log.debug('angular apiGet: data back: ', uri, data);
           deferred.resolve(data);
         })
         .error(function (data, status, headers, config) {
@@ -97,9 +98,9 @@
     function apiPost(uri, body) {
       var deferred = $q.defer();
       $http.post(uri, body)
-        .success(function (data, status, headers, config) {
-          $log.debug('data back from create call: ', data.content);
-          deferred.resolve(data.content);
+        .success(function (result, status, headers, config) {
+          $log.debug('result back from create call: ', result);
+          deferred.resolve(result);
         })
         .error(function (data, status, headers, config) {
           deferred.reject(data);
@@ -120,6 +121,23 @@
       return deferred.promise;
     }
 
+    function apiPatch(uri, body) {
+      var deferred = $q.defer();
+      console.log('$http.patch', $http.patch);
+      $http({
+        method: 'PATCH',
+        url: uri,
+        body: body
+      })
+        .success(function (data, status, headers, config) {
+          $log.debug('data back from patch call: ', data.content);
+          deferred.resolve(data.content);
+        })
+        .error(function (data, status, headers, config) {
+          deferred.reject(data);
+        });
+      return deferred.promise;
+    }
     function apiDelete(uri, body) {
       var deferred = $q.defer();
       $http.delete(uri, body)

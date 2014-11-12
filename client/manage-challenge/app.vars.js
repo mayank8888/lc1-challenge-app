@@ -3,8 +3,9 @@
 
   angular.module('manageChallenge')
     .constant("TC_URLS", {
-      "baseChallengeDetailsUrl": "http://www.topcoder.com/challenge-details/",
-      "baseMemberProfileUrl": "https://www.topcoder.com/member-profile/"
+      "baseUrl": "http://tcdev22.topcoder.com/",
+      "baseChallengeDetailsUrl": "http://tcdev22.topcoder.com/challenge-details/",
+      "baseMemberProfileUrl": "http://tcdev22.topcoder.com/member-profile/"
     })
     .constant("TC_DATA_SOURCE", {
     	"challenge": {

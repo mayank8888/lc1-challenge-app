@@ -11,7 +11,6 @@
    */
   function ResultsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedChallengeResults, resolvedCurrentChallenge) {
     var vm = this;
-    //TODO:(DG: 11/6/2015): FIX to get real total count
     vm.results = resolvedChallengeResults.content;
     vm.totalCount = resolvedChallengeResults.metadata.totalCount;
     vm.challenge = resolvedCurrentChallenge;
@@ -30,23 +29,23 @@
       var headers = [
         {
           "colName": "Place",
-          "col": "place"
+          "col": "scorecard.place"
         },
         {
           "colName": "Prize",
-          "col": "prize"
+          "col": "scorecard.prize"
         },
         {
           "colName": "Submitter",
-          "col": "submission.submitter.handle"
+          "col": "submitterId"
         },
         {
           "colName": "Score",
-          "col": "scoreSum"
+          "col": "scorecard.scoreSum"
         }
       ];
 
-      var sort = {place: 'asc'};
+      var sort = {'scorecard.place': 'asc'};
       Utils.handleTable(vm, $scope, headers, vm.results, vm.totalCount, sort);
     }
 

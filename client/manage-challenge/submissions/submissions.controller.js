@@ -10,7 +10,6 @@
      * @ngInject
      */
     function SubmissionsController($scope, matchmedia, ChallengeService, Utils, TC_URLS, submissionData, resolvedCurrentChallenge) {
-      
       var vm = this;
       vm.submissions = submissionData.content;
       vm.totalCount = submissionData.metadata.totalCount;
@@ -54,13 +53,13 @@
         Utils.handleTable(vm, $scope, headers, vm.submissions, vm.totalCount, sort);
 
       }
-      
+
       //helper functions
       function tcChallengeDetailsUrl(challenge) {
         return TC_URLS.baseChallengeDetailsUrl + challenge.id;
       }
 
     }
-    
+
 
 })(window, window.angular);

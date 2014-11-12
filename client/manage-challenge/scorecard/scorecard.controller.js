@@ -10,37 +10,16 @@
      * @ngInject
      */
     function ScorecardController($location, $scope, matchmedia, ChallengeService, Utils, TC_URLS, resolvedScorecard, resolvedCurrentChallenge) {
-        //dummy data
-        var scoreItems = {
-          metadata: {
-            totalCount: 3
-          },
-          content: [
-          {
-            "requirement": {
-              "id": 1,
-              "text": "Requirement 1 description"
-            },
-            "score": '4',
-            "comment": 'smart solution'
-          },
-          {
-            "requirement": {
-              "id": 2,
-              "text": "Requirement 2 description"
-            },
-            "score": '',
-            "comment": null
-          }
-        ]};
-
       var vm = this;
-      vm.scoreItems = scoreItems.content;
-      vm.totalCount = scoreItems.metadata.totalCount;
-      vm.scorecard = resolvedScorecard;
+      vm.scoreItems = resolvedScorecard.content.scorecardItems.content;
+      vm.totalCount = resolvedScorecard.content.scorecardItems.metadata.totalCount;
+      vm.scorecard = resolvedScorecard.content;
       vm.challenge = resolvedCurrentChallenge;
       vm.tcChallengeDetailsUrl = tcChallengeDetailsUrl;
       vm.saveScorecard = saveScorecard;
+
+
+      console.log('vm.scoreItems', vm.scoreItems)
 
       //user-agent stuff
       vm.browser = Utils.getBrowser();
@@ -81,10 +60,10 @@
         return TC_URLS.baseChallengeDetailsUrl + challenge.id;
       }
 
-      function saveScorecard() {
-        //TODO: implement
-        console.log('implement save scorecard');
-        $location.path('/challenges/' + vm.challenge.id + '/submissions/')
+      function saveScorecard(challenge) {
+        ChallengeService.updateScorecardItems(challenge.id, vm.scoreItems).then(function() {
+          $location.path('/challenges/' + vm.challenge.id + '/submissions/');
+        });
       }
 
     }

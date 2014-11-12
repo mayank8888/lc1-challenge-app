@@ -29,7 +29,7 @@
       getScorecard: getScorecard,
       getScorecards: getScorecards,
       createScorecard: createScorecard,
-      updateScorecardItem: updateScorecardItem,
+      updateScorecardItems: updateScorecardItems,
 
       //Result APIs
       getResults: getResults
@@ -41,9 +41,13 @@
 
     function getSubmissions(challengeId) {
       var deferred = $q.defer();
-      Utils.apiGet('/_api_/challenges/' + challengeId + '/submissions/').then(function (result) {
-        var subs = result.content;
-        deferred.resolve(subs);
+      Utils.apiGet('/_api_/challenges/' + challengeId + '/submissions').then(function (result) {
+        // Enable once statuses are available on submissions
+        // _.forEach(result.content, function(submission) {
+        //   submission.statusDisplay = Utils.initCase(submission.status)
+        // });
+
+        deferred.resolve(result);
       })
 
       return deferred.promise;
@@ -53,25 +57,17 @@
     function getSubsAndFiles(challengeId) {
       var deferred = $q.defer();
       getSubsAndScorecards(challengeId).then(function(subsScores) {
-        //console.log('subs back', subsScores)
         Utils.apiGet('/_api_/challenges/' + challengeId + '/files/').then(function(res) {
 
           var files = res.content;
-          //console.log('files', files)
           angular.forEach(files, function(file, key) {
-            //console.log('files', file.submissionId, file)
             if (file.submissionId) {
-
-              // var submission = _.where(subsScores.content, {
-              //   id: file.submissionId
-              // });
               var key = _.findKey(subsScores.content, {id: file.submissionId})
-              //console.log('submission', key)
-              subsScores.content[key].file = file;
-              //submittedFiles[0].file = file;
+              if (key) {
+                subsScores.content[key].file = file;
+              }
             }
           });
-          //console.log('subs back', subsScores)
           deferred.resolve(subsScores);
         })
       });
@@ -128,31 +124,67 @@
 
     }
 
-    /* Scorecard APIs */
-    function getScorecard(challengeId, sequence) {
+    function getRequirements(challengeId) {
       var deferred = $q.defer();
-
-      getScorecards(challengeId).then(function (scorecards) {
-        deferred.resolve(_.first(_.where(scorecards, {
-          'challengeId': parseInt(challengeId),
-          'sequence': sequence
-        })));
+      Utils.apiGet('/_api_/challenges/' + challengeId + '/requirements').then(function(result) {
+        deferred.resolve(result);
       });
       return deferred.promise;
     }
 
+    /* Scorecard APIs */
+    function getScorecard(challengeId, scorecardId) {
+      var deferred = $q.defer();
+
+      //get scorecard items + associated requirements for a single scorecard
+      Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards/' + scorecardId).then(function(result) {
+        getScorecardItems(challengeId, scorecardId).then(function(scorecardItems) {
+          result.content.scorecardItems = scorecardItems;
+          getRequirements(challengeId, scorecardId).then(function(requirements) {
+            _.forEach(scorecardItems.content, function(scorecardItem) {
+              scorecardItem.requirement = _.first(_.where(requirements.content, {
+                id : scorecardItem.requirementId
+              }));
+
+            });
+            deferred.resolve(result);
+          });
+        })
+      });
+
+      return deferred.promise;
+    }
+
     function getScorecards(challengeId) {
+      var deferred = $q.defer();
       if (_useLocal) {
-        var deferred = $q.defer();
         Utils.getJsonData('appirio_bower_components/challenge/data/scorecards.json').then(function(scorecards) {
           deferred.resolve(_.where(scorecards, {
             'challengeId': parseInt(challengeId)
           }));
         });
-        return deferred.promise;
       } else {
-        return Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards');
+        Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards').then(function(result) {
+          // Add Init cased statuses
+          // _.forEach(result.content, function(scorecard) {
+          //   if (scorecard.status !== null) {
+          //     scorecard.statusDisplay = Utils.initCase(scorecard.status)
+          //   }
+
+          // });
+          deferred.resolve(result);
+        });
       }
+      return deferred.promise;
+    }
+
+    function getScorecardItems(challengeId, scorecardId) {
+      var deferred = $q.defer();
+      Utils.apiGet('/_api_/challenges/' + challengeId + '/scorecards/' + scorecardId + '/scorecardItems').then(function(result) {
+        deferred.resolve(result);
+      });
+
+      return deferred.promise;
     }
 
     function deleteScorecard() {
@@ -162,44 +194,56 @@
 
       return Utils.apiPost('/_api_/challenges/4/scorecards', body);
     }
-    function createScorecard() {
+    function createScorecard(challengeId, submissionId) {
+      var deferred = $q.defer();
+      var promises = [];
       var body = {
-        // scoreSum: 97,
-        // scorePercent: 96.5,
-        // scoreMax: 99.9,
         status: 'VALID',
-        // pay: false,
-        // place: 1,
-        // prize: 1500,
-        // challengeId: 111,
-        reviewerId: 222,  //req'd
-        submissionId: 333 //req'd
+        reviewerId: 222,  //req'd; TODO(DG: 11/12/2014): use real user id
+        submissionId: parseInt(submissionId) //req'd
       };
 
-      return Utils.apiPost('/_api_/challenges/4/scorecards', body);
+      Utils.apiPost('/_api_/challenges/' + challengeId + '/scorecards', body).then(function(scorecard) {
+        getRequirements(challengeId).then(function(reqs) {
+          _.forEach(reqs.content, function(req) {
+            var body = {
+              "requirementId": req.id,
+              "score": -1
+            };
+            var promise = Utils.apiPost('/_api_/challenges/' + challengeId + '/scorecards/' + scorecard.id + '/scorecardItems', body)
+            promises.push(promise);
+          });
+          $q.all(promises).then(function() {
+            deferred.resolve(scorecard);
+          })
+        });
+      })
+      return deferred.promise;
     }
 
-    function updateScorecard(challengeId, submissionId, scorecardId) {
-      //TODO: Implement
-      throw new Error('Not Implemented');
+    function updateScorecardItems(challengeId, scorecardItems) {
+      var deferred = $q.defer();
+      var promises = [];
+      _.forEach(scorecardItems, function(scorecard) {
+        var promise = updateScorecardItem(challengeId, scorecard)
+        promises.push(promise);
+      })
+      $q.all(promises).then(function() {
+        deferred.resolve();
+      })
+      return deferred.promise;
     }
 
-    function updateScorecardItem(challengeId, submissionId, scorecardId, requirementId, scorecardItemId) {
-      //TODO: Implement
-      challengeId = 4;
-      submissionId = 2;
-      scorecardId = 2;
-      scorecardItemId = 1;
-      requirementId = 17;
+    function updateScorecardItem(challengeId, scorecardItem) {
+      var scorecardId = scorecardItem.scorecardId;
       var body = {
-        "id": 2,
-        "scorecardId": 2,
-        "requirementId": 17,
-        "score": 21
+        requirementId: scorecardItem.requirementId, //TODO(DG: 11/12/2014): Remove; currently req'd #280
+        score: scorecardItem.score
       };
-      console.log("DOING UPDATE2: ", body);
-      //return Utils.apiUpdate('/_api_/challenges/' + challengeId);
-      return Utils.apiUpdate('/_api_/challenges/' + challengeId + '/scorecards/' + scorecardId + '/scorecardItems/' + scorecardItemId, body);
+      if (scorecardItem.comment) {
+        body.comment = scorecardItem.comment
+      }
+      return Utils.apiUpdate('/_api_/challenges/' + challengeId + '/scorecards/' + scorecardId + '/scorecardItems/' + scorecardItem.id, body);
 
     }
 
@@ -207,42 +251,34 @@
     function getResults(challengeId) {
       var deferred = $q.defer();
       getSubsAndFiles(challengeId).then(function(subsScores) {
-        //console.log('sc', subsScores.content)
-          _.remove(subsScores.content, function(scorecard) {
-            return !scorecard.pay;
+          var winningSubs = _.filter(subsScores.content, function(item) {
+            return item.scorecard.pay;
           });
-          subsScores.metadata.totalCount = subsScores.content.length;
+          subsScores.content = winningSubs;
           deferred.resolve(subsScores);
       });
       return deferred.promise;
     }
 
     function getSubsAndScorecards(challengeId) {
-      //select * from scorecards where place is not null and pay = true and "challengeId" = {}
       if (_useLocal) {
         return Utils.getJsonData('appirio_bower_components/challenge/data/results.json');
       } else {
         var deferred = $q.defer();
-
-        getScorecards(challengeId).then(function(scorecards) {
-          //console.log('sc', scorecards)
-
-          getSubmissions(challengeId).then(function(subs) {
-            //console.log('subs', subs)
+        getSubmissions(challengeId).then(function(subs) {
+          getScorecards(challengeId).then(function(scorecards) {
             //get submitter id for
             _.forEach(scorecards.content, function(scorecard) {
-              //console.log(scorecard)
-              var submission = _.where(subs, {id: scorecard.submissionId})[0]
-
+              var submission = _.where(subs.content, {id: scorecard.submissionId})[0];
               if (submission) {
-                scorecard.submitterId = submission.submitterId;
+                submission.scorecard = scorecard;
               } else {
-                //Invalid submissionId on a scorecard
+                //Submission doesn't have a scorecard yet
               }
 
             });
 
-            deferred.resolve(scorecards);
+            deferred.resolve(subs);
           })
 
 

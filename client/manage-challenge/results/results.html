@@ -38,20 +38,20 @@
           &nbsp;
           </td>
           <td class="text-left" data-sortable="'place'">
-            {{result.place}}
+            {{result.scorecard.place}}
           </td>
           <td class="text-left" data-sortable="'prize'">
-            {{result.prize}}
+            {{result.scorecard.prize}}
           </td>
           <td class="text-left" data-sortable="'submission.submitter.handle'">
             <a href="{{vm.tcMemberProfileUrl(result.submission.submitter.handle)}}" target="_blank">{{result.submitterId}}</a>
           </td>
           <td data-ng-if="!phone" class="text-left" data-sortable="'scoreSum'">
-          {{result.scoreSum}}
+          {{result.scorecard.scoreSum}}
 
           </td>
           <td class="action-btn">
-            <a ng-href="{{result.file.filePath}}" class="fa fa-2x fa-download" title="Download Submission"></a>
+            <a ng-href="{{result.file.filePath + result.file.fileName}}" class="fa fa-2x fa-download" title="Download Submission"></a>
           </td>
         </tr>
         </tbody>

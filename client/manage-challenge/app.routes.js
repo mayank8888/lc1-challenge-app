@@ -42,14 +42,28 @@
         }
       })
 
+      //create and then route to new scorecard
+      .when("/challenges/:challengeId/submissions/:submissionId/new", {
+        resolve: {
+          resolvedScorecard: function createScorecard($location, $q, $route, ChallengeService) {
+            var defer = $q.defer();
+            ChallengeService.createScorecard($route.current.params.challengeId, $route.current.params.submissionId).then(
+              function(scorecard) {
+                $location.path('/challenges/' + $route.current.params.challengeId + '/submissions/' + $route.current.params.submissionId + '/scorecard/' + scorecard.id).replace();
+            });
+            return defer.promise;
+          },
+        }
+      })
+
       //show a scorecard for a given submission
-      .when("/challenges/:challengeId/submissions/:submissionId/scorecard", {
+      .when("/challenges/:challengeId/submissions/:submissionId/scorecard/:scorecardId", {
         controller: "ScorecardController",
         controllerAs: "vm",
         templateUrl: "scorecard/scorecard.html",
         resolve: {
           resolvedScorecard: function getScorecard($route, ChallengeService) {
-            return ChallengeService.getScorecard($route.current.params.challengeId, $route.current.params.submissionId);
+            return ChallengeService.getScorecard($route.current.params.challengeId, $route.current.params.scorecardId);
           },
           resolvedCurrentChallenge: function getChallenge($route, ChallengeService) {
             return ChallengeService.getChallenge($route.current.params.challengeId);
