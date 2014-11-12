@@ -89,7 +89,7 @@
 
     //github username
     var whitelist = [
-      'bowerma',
+      'kbowerma',
       'bryceglass',
       'gaitonde',
       'indytechcook',
