@@ -1210,3 +1210,60 @@ footer p {
 		/* fixes 3em issue  */
 		min-width: 150px;
 }
+
+#section-1 .content form .desc a,
+#section-3 .content form .requirement-desc-label a{
+	position:relative;
+	top: 5px;
+	display: block;
+	width: 74px;
+	height: 34px;
+	float: right;
+	margin-right: 20px;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+	color: #566a78;
+	z-index: 100;
+}
+#section-3 .content form .requirement-desc-label a{
+	top: 3px;
+}
+#section-1 .content form .desc a.active,
+#section-3 .content form .requirement-desc-label a.active{
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-radius: 4px;
+	background: #ffffff;
+	color: #455560;
+}
+#section-1 .content form .descriptionPreview,
+#section-3 .content form .requirementPreview{
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	display: block;
+	font-size: 14px;
+	padding: 7px 10px;
+	color: #455560;
+	resize: none;
+	width: 100%;
+	height: 212px;
+	word-wrap: break-word;
+	overflow-y: auto;
+}
+#section-3 .content form .requirementPreview{
+	height: 64px;
+}
+#section-1 .content form .previewEmpty,
+#section-3 .content form .previewEmpty{
+	color: #aaaaaa;
+	font-weight: lighter;
+	font-style: italic;
+}
+#section-3 .content .requirementItemPreview{
+	word-wrap: break-word;
+	overflow-y: auto;
+	height: 100px;
+	margin-right: 196px;
+}

@@ -22,6 +22,8 @@
       });
     }
 
+    $scope.editRequirement = true;
+
     /*create requirement*/
     $scope.addRequirement = function () {
       if (!$scope.requirements.content) {
@@ -46,8 +48,7 @@
           return requirement;
         }, function(err) {
           console.log('create requirement: error: ', err);
-        })
-        ;
+        });
 
     };
 
