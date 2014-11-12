@@ -90,10 +90,10 @@
           typeaheadjs: {
             name: 'tagNames',
             displayKey: 'name',
-            valueKey: 'name',
-            freeInput: false,
+            valueKey: 'name',      
             source: tagNames.ttAdapter()
-          }
+          },
+          freeInput: false,
         });
         $scope.$watch('tags', function(){
           $scope.challenge.tags=$("input.tags-input").tagsinput('items');
