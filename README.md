@@ -1,20 +1,17 @@
 ## Install
 
+install in 2 steps:
+
+**First**
 `npm install`
 
-~~`cd client && bower install`~~
-
->npm install will now call postinstall script which will run bower install
-
-start with `grunt` or `node server/web.js`
-
+**Second**
 you must create a `.env` file with the following minimum settings
 ```
 TC_AUTH0_CLIENT=foo
 TC_AUTH0_SECRET=bar
 ```
 you may copy `env_sample` to `.env`
-
 
 ## Run
 
