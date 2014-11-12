@@ -15,6 +15,7 @@
     'restangular',
     'ui.router',
     'ngSanitize',
+    'duScroll',
 
     //custom
     'directives'
